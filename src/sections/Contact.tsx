@@ -16,7 +16,7 @@ export const Contact = () => (
       </div>
     </div>
     <p className="mt-20 text-slate-600 font-mono text-xs uppercase tracking-[0.5em]">
-      © 2024 RAJ TIBAREWALA • SYSTEM ARCHITECT
+      © 2026D RAJ TIBAREWALA • SYSTEM ARCHITECT
     </p>
   </section>
 );

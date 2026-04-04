@@ -1,38 +1,46 @@
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { motion } from "framer-motion";
 
-export const Hero = () => (
-  <section className="min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      <h2 className="text-sm font-mono tracking-[0.3em] text-purple-500 uppercase mb-4">Engineering Systems</h2>
-      <h1 className="text-6xl md:text-8xl font-black mb-6 tracking-tight tracking-tighter leading-none">
-        Raj <span className="text-gradient">Tibarewala</span>
-      </h1>
-      <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed mb-10">
-        Cybersecurity <span className="mx-2 text-white/20">•</span>
-        Systems <span className="mx-2 text-white/20">•</span>
-        Builder
-      </p>
+export const Hero = () => {
+  return (
+    <section className="min-h-screen flex items-center justify-between px-10 max-w-7xl mx-auto">
 
-      <div className="flex gap-6 justify-center">
-        {[
-            { Icon: FaGithub, href: "#" },
-            { Icon: FaLinkedin, href: "#" },
-            { Icon: FaInstagram, href: "#" }
-        ].map((_social, i) => (
-          <a
-            key={i}
-            // href={social.href}
-            className="p-3 glass rounded-full hover:scale-110 hover:text-purple-400 transition-all"
-          >
-            {/* <social.Icon size={24} /> */}
-          </a>
-        ))}
-      </div>
-    </motion.div>
-  </section>
-);
+      {/* LEFT */}
+      <motion.div
+        initial={{ opacity: 0, x: -40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7 }}
+        className="max-w-xl"
+      >
+        <p className="text-slate-400 mb-3">I am Raj</p>
+
+        <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+          Cyber Security <br />
+          <span className="text-gradient">Student & Builder</span>
+        </h1>
+
+        <p className="text-slate-400 mt-5">
+          I build systems that respond — not just interfaces that sit still.
+        </p>
+
+        <button className="mt-6 px-6 py-3 rounded-lg glass hover:border-purple-500/50 transition">
+          Download CV
+        </button>
+      </motion.div>
+
+      {/* RIGHT IMAGE */}
+      <motion.div
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7 }}
+        className="hidden md:block"
+      >
+        <img
+          src="src\assets\my-pic.JPG"
+          alt="raj"
+          className="w-[350px] grayscale opacity-90"
+        />
+      </motion.div>
+    </section>
+  );
+};
+
