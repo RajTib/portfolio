@@ -67,20 +67,6 @@
           LinkedIn
         </a>
       </div>
-      <div class="hero-stats fade-up">
-        <div class="stat-item">
-          <div class="stat-num">8<span>.70</span></div>
-          <div class="stat-label">CGPA</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">10<span>+</span></div>
-          <div class="stat-label">Projects</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">3<span>+</span></div>
-          <div class="stat-label">Certifications</div>
-        </div>
-      </div>
     </div>
     <div class="hero-right">
       <div class="hero-img-wrap fade-up">
@@ -100,7 +86,7 @@
       <div class="section-tag">About Me</div>
       <h2 class="section-title">Security-First.<br>Systems Thinker.</h2>
       <p class="about-bio">
-        I'm a <strong>2nd-year B.Tech CSE (Cyber Security)</strong> student at VIT Vellore with a CGPA of 8.70. I sit at
+        I'm a <strong>3rd-year B.Tech CSE (Cyber Security)</strong> student at VIT Vellore. I sit at
         the intersection of cybersecurity, machine learning, and systems engineering — building tools that solve real
         problems, from lightweight SIEM pipelines to satellite-based ML inference systems.
       </p>
@@ -482,6 +468,18 @@
       </div>
     </div>
   </section>
+
+  <!-- CERTS MODAL -->
+  <div class="modal-overlay" id="certificationsModal" onclick="handleOverlayClick(event)">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" onclick="closeModal()">[ ESC ] Close</button>
+      <div class="modal-issuer" id="modalIssuer"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-date" id="modalDate"></div>
+      <div class="modal-skills" id="modalSkills"></div>
+      <div class="modal-skill" id="modalSkill"></div>
+    </div>
+  </div>
 
   <!-- CONTACT -->
   <section id="contact">

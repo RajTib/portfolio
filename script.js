@@ -79,6 +79,10 @@ const projects = {
     }
 };
 
+const certs = {
+    
+}
+
 function openModal(id) {
     const p = projects[id];
     if (!p) return;
