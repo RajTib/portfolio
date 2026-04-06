@@ -206,7 +206,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Typing effect
-const roles = ['Cybersecurity Student', 'Systems Builder', 'ML Researcher', 'Ethical Hacker', 'Open Source Dev'];
+const roles = ['Cybersecurity Student', 'Systems Builder', 'ML Enthusiast', 'Open Source Dev'];
 let ri = 0, ci = 0, deleting = false;
 const typed = document.getElementById('typed-text');
 function typeLoop() {

@@ -962,13 +962,13 @@ h2.section-title {
 }
 
 .modal-link-btn.secondary {
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: var(--text);
+    background: mediumpurple;
+    color: var(--bg);
+    font-weight: 700;
 }
 
 .modal-link-btn.secondary:hover {
-    border-color: var(--accent2);
-    color: var(--accent2);
+    background: var(--accent2);
 }
 
 /* CERTIFICATIONS */
