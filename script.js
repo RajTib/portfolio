@@ -142,6 +142,39 @@ function handleOverlayClick(e) {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+// Mobile nav menu
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+
+function openMenu() {
+    navMenu.classList.add('open');
+    navToggle.classList.add('active');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    const firstLink = navMenu.querySelector('a');
+    if (firstLink) firstLink.focus();
+}
+
+function closeMenu() {
+    navMenu.classList.remove('open');
+    navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+}
+
+navToggle.addEventListener('click', () => {
+    navMenu.classList.contains('open') ? closeMenu() : openMenu();
+});
+
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        closeMenu();
+        navToggle.focus();
+    }
+});
+
 // Custom cursor
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
@@ -179,6 +212,7 @@ function initStars() {
     }
 }
 initStars();
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function drawStars(t) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     stars.forEach(s => {
@@ -188,8 +222,10 @@ function drawStars(t) {
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(200,220,255,${opacity})`;
         ctx.fill();
-        s.y -= s.speed;
-        if (s.y < 0) { s.y = canvas.height; s.x = Math.random() * canvas.width; }
+        if (!reduceMotion) {
+            s.y -= s.speed;
+            if (s.y < 0) { s.y = canvas.height; s.x = Math.random() * canvas.width; }
+        }
     });
     // Nebula glow spots
     const grad1 = ctx.createRadialGradient(canvas.width * 0.8, canvas.height * 0.2, 0, canvas.width * 0.8, canvas.height * 0.2, 300);
