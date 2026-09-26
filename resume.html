@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Raj Tibarewala</title>
+  <meta name="description"
+    content="Resume of Raj Tibarewala — B.Tech CSE (Cyber Security) at VIT Vellore. Read online or download as PDF.">
+  <meta name="author" content="Raj Tibarewala">
+  <meta name="theme-color" content="#050608">
+  <link rel="canonical" href="https://raj-tib.vercel.app/resume.html">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Resume — Raj Tibarewala">
+  <meta property="og:description"
+    content="B.Tech CSE (Cyber Security), VIT Vellore. Security tooling, ML pipelines, embedded systems.">
+  <meta property="og:url" content="https://raj-tib.vercel.app/resume.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="favicon-v2.ico">
+
+  <style>
+    /* ------------------------------------------------------------
+       Resume page — the resume is rendered natively in the site's
+       design language rather than embedded as a PDF sheet.
+       ------------------------------------------------------------ */
+    #resume-page {
+      min-height: 100vh;
+      padding: 8rem 4rem 5rem;
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .resume-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2rem 0 4.5rem;
+    }
+
+    .resume-note {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-left: auto;
+    }
+
+    /* --- Resume header --- */
+    .rz-head {
+      border-top: 1px solid var(--border);
+      padding-top: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .rz-name {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .rz-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.75rem;
+      margin-top: 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+    }
+
+    .rz-contact a,
+    .rz-contact span {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .rz-contact a:hover {
+      color: var(--accent);
+    }
+
+    /* --- Resume sections: label column + content, like the site's exp cards --- */
+    .rz-section {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 2.25rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .rz-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding-top: 0.35rem;
+    }
+
+    .rz-entry+.rz-entry {
+      margin-top: 2rem;
+    }
+
+    .rz-entry-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .rz-entry-title {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .rz-entry-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 255, 170, 0.3);
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .rz-entry-title a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .rz-entry-date {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .rz-entry-sub {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent2);
+      margin-top: 0.3rem;
+      letter-spacing: 0.05em;
+    }
+
+    .rz-bullets {
+      list-style: none;
+      margin-top: 0.85rem;
+    }
+
+    .rz-bullets li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: #9ca3af;
+      line-height: 1.75;
+      margin-bottom: 0.45rem;
+    }
+
+    .rz-bullets li::before {
+      content: '·';
+      position: absolute;
+      left: 0.2rem;
+      color: var(--accent);
+    }
+
+    /* --- Skills rows --- */
+    .rz-skill-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 1rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .rz-skill-row:last-child {
+      border-bottom: none;
+    }
+
+    .rz-skill-key {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding-top: 0.15rem;
+    }
+
+    .rz-skill-val {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* --- Footer of the sheet --- */
+    .rz-end {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .rz-end p {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 768px) {
+      #resume-page {
+        padding: 6.5rem 1.5rem 4rem;
+      }
+
+      .rz-section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1.75rem 0;
+      }
+
+      .rz-skill-row {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+
+      .resume-note {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #resume-page {
+        padding: 6rem 1.25rem 3.5rem;
+      }
+
+      .resume-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 3.5rem;
+      }
+
+      .resume-toolbar .btn-primary,
+      .resume-toolbar .btn-secondary {
+        text-align: center;
+      }
+
+      .rz-entry-head {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <canvas id="stars-canvas" aria-hidden="true"></canvas>
+
+  <nav id="navbar" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo">RT<span>.dev</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#certifications">Certs</a></li>
+      <li><a href="resume.html" aria-current="page">Resume</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="mailto:raj.tibarewala@gmail.com" class="nav-cta">Let's Talk</a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links"
+        aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="resume-page">
+      <div class="section-tag fade-up">Resume</div>
+      <h1 class="section-title fade-up">The Paper<br>Version</h1>
+
+      <div class="resume-toolbar fade-up">
+        <a href="assets/Raj-Tibarewala-Resume.pdf" download="Raj-Tibarewala-Resume.pdf" class="btn-primary">
+          Download PDF
+        </a>
+        <a href="assets/Raj-Tibarewala-Resume.pdf" target="_blank" rel="noopener" class="btn-secondary">
+          Open PDF in New Tab
+        </a>
+        <span class="resume-note">LAST UPDATED · JAN 2026</span>
+      </div>
+
+      <!-- ================= RESUME ================= -->
+
+      <header class="rz-head fade-up">
+        <div class="rz-name">Raj Tibarewala</div>
+        <div class="rz-contact">
+          <a href="mailto:raj.tibarewala@gmail.com">raj.tibarewala@gmail.com</a>
+          <a href="tel:+919129837866">+91 91298 37866</a>
+          <a href="https://github.com/RajTib" target="_blank" rel="noopener">github.com/RajTib</a>
+          <a href="https://www.linkedin.com/in/raj-tibarewala/" target="_blank"
+            rel="noopener">linkedin.com/in/raj-tibarewala</a>
+        </div>
+      </header>
+
+      <div class="rz-section fade-up">
+        <div class="rz-label">Education</div>
+        <div>
+          <div class="rz-entry">
+            <div class="rz-entry-head">
+              <div class="rz-entry-title">Vellore Institute of Technology, Vellore</div>
+              <div class="rz-entry-date">Jul 2024 — May 2028</div>
+            </div>
+            <div class="rz-entry-sub">B.Tech Computer Science and Engineering (Cyber Security) · CGPA 8.70</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rz-section fade-up">
+        <div class="rz-label">Experience</div>
+        <div>
+          <div class="rz-entry">
+            <div class="rz-entry-head">
+              <div class="rz-entry-title">Team Ardra — Software Domain</div>
+              <div class="rz-entry-date">Sep 2025 — Present</div>
+            </div>
+            <div class="rz-entry-sub">Autonomous Systems R&amp;D</div>
+            <ul class="rz-bullets">
+              <li>Worked on embedded Linux platforms (Raspberry Pi, Jetson Orin Nano) for autonomous drone systems.</li>
+              <li>Performed system setup, debugging, and validation of onboard compute modules.</li>
+              <li>Assisted in deploying edge ML pipelines optimized for latency, power, and compute limits.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="rz-section fade-up">
+        <div class="rz-label">Projects</div>
+        <div>
+          <div class="rz-entry">
+            <div class="rz-entry-head">
+              <div class="rz-entry-title">
+                <a href="https://github.com/RajTib/siem-lite" target="_blank" rel="noopener">SIEM-Lite — Linux
+                  Security Monitoring</a>
+              </div>
+              <div class="rz-entry-date">Python · Streamlit · Linux</div>
+            </div>
+            <ul class="rz-bullets">
+              <li>Built a lightweight SIEM pipeline to monitor Linux authentication logs.</li>
+              <li>Implemented detection for SSH brute-force attacks and privilege escalation misuse.</li>
+              <li>Designed correlation-based severity escalation for multi-stage attack detection.</li>
+              <li>Developed a real-time Streamlit dashboard for alerts and timeline analysis.</li>
+            </ul>
+          </div>
+          <div class="rz-entry">
+            <div class="rz-entry-head">
+              <div class="rz-entry-title">
+                <a href="https://github.com/RajTib/geo-ai-techfest-2025" target="_blank" rel="noopener">GeoAI Hack —
+                  IIT Bombay TechFest</a>
+              </div>
+              <div class="rz-entry-date">ML · Docker · FastAPI · Geospatial</div>
+            </div>
+            <ul class="rz-bullets">
+              <li>Trained YOLO models for rooftop and infrastructure detection from satellite imagery.</li>
+              <li>Applied SegFormer-based semantic segmentation for continuous geospatial features.</li>
+              <li>Deployed inference pipeline using FastAPI and Docker.</li>
+            </ul>
+          </div>
+          <div class="rz-entry">
+            <div class="rz-entry-head">
+              <div class="rz-entry-title">
+                <a href="https://github.com/RajTib/ISA-Summer-School" target="_blank" rel="noopener">Astrophysics Data
+                  Analysis</a>
+              </div>
+              <div class="rz-entry-date">Python · NumPy · Pandas · Matplotlib</div>
+            </div>
+            <ul class="rz-bullets">
+              <li>Estimated the Hubble Constant using Type Ia supernova datasets; validated against Planck-18 results.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="rz-section fade-up">
+        <div class="rz-label">Publications</div>
+        <div>
+          <div class="rz-entry">
+            <div class="rz-entry-head">
+              <div class="rz-entry-title">Nuclear Thermal Rocket: Design Considerations and Efficiency Optimization
+                for Deep-Space Explorations</div>
+            </div>
+            <div class="rz-entry-sub">Co-authored under faculty supervision</div>
+            <ul class="rz-bullets">
+              <li>Conducted literature review and background research on nuclear thermal propulsion systems.</li>
+              <li>Assisted in structuring technical content and supporting manuscript preparation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="rz-section fade-up">
+        <div class="rz-label">Technical Skills</div>
+        <div>
+          <div class="rz-skill-row">
+            <div class="rz-skill-key">Languages</div>
+            <div class="rz-skill-val">Python, C, C++, Java</div>
+          </div>
+          <div class="rz-skill-row">
+            <div class="rz-skill-key">Security</div>
+            <div class="rz-skill-val">SIEM concepts, Linux security, log analysis, attack correlation</div>
+          </div>
+          <div class="rz-skill-row">
+            <div class="rz-skill-key">ML / Data</div>
+            <div class="rz-skill-val">NumPy, Pandas, Scikit-learn, OpenCV, Matplotlib</div>
+          </div>
+          <div class="rz-skill-row">
+            <div class="rz-skill-key">Tools</div>
+            <div class="rz-skill-val">Git, Docker, Linux, VS Code, Jetson, Raspberry Pi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rz-section fade-up">
+        <div class="rz-label">Certifications</div>
+        <div>
+          <ul class="rz-bullets" style="margin-top:0.2rem">
+            <li>Google Cybersecurity Professional Certificate — Coursera</li>
+            <li>Astronomy and Astrophysics Summer School — India Space Academy (2025)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rz-end fade-up">
+        <p>WEB RENDITION OF THE PDF — SAME CONTENT, NATIVE TO THIS SITE</p>
+        <a href="assets/Raj-Tibarewala-Resume.pdf" download="Raj-Tibarewala-Resume.pdf" class="btn-secondary">
+          Download PDF
+        </a>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Raj Tibarewala · Built with intention</p>
+    <div class="footer-status">
+      <div class="status-dot" aria-hidden="true"></div>
+      <p class="footer-status-text">AVAILABLE FOR OPPORTUNITIES</p>
+    </div>
+  </footer>
+  <script src="script.js" defer></script>
+</body>
+
+</html>

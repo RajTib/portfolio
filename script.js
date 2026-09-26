@@ -1,4 +1,16 @@
-// Project modal data
+/* ============================================================
+   Raj Tibarewala — portfolio interactions
+   Sections: data · modals · nav · cursor · starfield · typing · reveal
+   ============================================================ */
+
+'use strict';
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+/* ------------------------------------------------------------
+   Project data
+   ------------------------------------------------------------ */
 const projects = {
     '01': {
         num: '01 / SECURITY',
@@ -20,7 +32,7 @@ const projects = {
         highlight: null,
         tech: ['YOLOv8', 'SegFormer', 'FastAPI', 'Docker', 'Python', 'Satellite Imagery'],
         github: 'https://github.com/RajTib/geo-ai-techfest-2025',
-        live: 'https://huggingface.co/spaces/team-ardra/geoai?logs=container'
+        live: 'https://huggingface.co/spaces/team-ardra/geoai'
     },
     '03': {
         num: '03 / TOOL · MSP',
@@ -34,14 +46,14 @@ const projects = {
         live: 'https://vtop-gpa-calculator.vercel.app/'
     },
     '04': {
-        num: '04 / WEB-DEVELOPMENT',
+        num: '04 / WEB DEV',
         title: 'Cosmopedia',
         badge: 'Web Dev',
         badgeClass: 'badge-web',
-        desc: `Created an online encyclopedia for only space enthusiasts to explore and know about space in a much more fun and interactive way. Inspired by Wikipedia.`,
+        desc: `An <strong>interactive space encyclopedia</strong> inspired by Wikipedia — built for space enthusiasts who want exploration, not just articles. Designed first in <strong>Figma</strong>, then implemented as a component-based <strong>React</strong> app with a browsable article structure. An exercise in taking a product from design system to deployed site.`,
         highlight: null,
-        tech: ['HTML5', 'CSS3', 'JS', 'ReactJS', 'Figma'],
-        github: 'https://github.com/RajTib/ISA-Summer-School',
+        tech: ['React', 'JavaScript', 'HTML5', 'CSS3', 'Figma'],
+        github: 'https://github.com/RajTib/cosmopedia-react',
         live: 'https://cosmopedia-brown.vercel.app/'
     },
     '05': {
@@ -79,11 +91,102 @@ const projects = {
     }
 };
 
+/* ------------------------------------------------------------
+   Certificate data
+   Drop the matching image into assets/certs/ (e.g. assets/certs/pinnacle.jpg)
+   and it will appear in the modal automatically.
+   ------------------------------------------------------------ */
 const certs = {
-    
+    'pinnacle': {
+        issuer: 'Pinnacle Labs',
+        name: 'Certificate of Internship',
+        date: 'Mar 2026',
+        credentialId: null,
+        skills: ['Cybersecurity', 'Linux', 'Python Tooling'],
+        image: 'assets/certs/pinnacle.jpg',
+        verifyUrl: null
+    },
+    'thm-presec': {
+        issuer: 'TryHackMe',
+        name: 'Pre Security Certificate',
+        date: 'Feb 2026',
+        credentialId: 'THM-9AGQEO61IF',
+        skills: ['Networking Fundamentals', 'Linux', 'Web Basics', 'Security Concepts'],
+        image: 'assets/certs/thm-presec.jpg',
+        verifyUrl: 'https://tryhackme.com/certificate/THM-9AGQEO61IF'
+    },
+    'google-foundations': {
+        issuer: 'Google · Coursera',
+        name: 'Foundations of Cybersecurity',
+        date: 'Dec 2025',
+        credentialId: 'EFNTCI2IBS6F',
+        skills: ['Security Fundamentals', 'CISSP Domains', 'Security Frameworks'],
+        image: 'assets/certs/google-foundations.jpg',
+        verifyUrl: 'https://coursera.org/verify/EFNTCI2IBS6F'
+    },
+    'google-risks': {
+        issuer: 'Google · Coursera',
+        name: 'Play It Safe: Manage Security Risks',
+        date: 'Dec 2025',
+        credentialId: 'ADEM4YO13VBT',
+        skills: ['Risk Management', 'NIST Frameworks', 'Incident Response Basics'],
+        image: 'assets/certs/google-risks.jpg',
+        verifyUrl: 'https://coursera.org/verify/ADEM4YO13VBT'
+    },
+    'isa-summer': {
+        issuer: 'India Space Academy',
+        name: 'Astronomy & Astrophysics Summer School',
+        date: 'Jun 2025',
+        credentialId: null,
+        skills: ['Data Analysis', 'NumPy', 'Data Cleaning', 'Astrophysics'],
+        image: 'assets/certs/isa-summer.jpg',
+        verifyUrl: null
+    }
+};
+
+/* ------------------------------------------------------------
+   Modal manager — shared open/close, focus handling, ESC
+   ------------------------------------------------------------ */
+let lastFocusedElement = null;
+
+function openOverlay(overlay) {
+    lastFocusedElement = document.activeElement;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    const closeBtn = overlay.querySelector('.modal-close');
+    if (closeBtn) closeBtn.focus();
 }
 
-function openModal(id) {
+function closeOverlays() {
+    document.querySelectorAll('.modal-overlay.open').forEach(o => o.classList.remove('open'));
+    document.body.style.overflow = '';
+    if (lastFocusedElement) {
+        lastFocusedElement.focus();
+        lastFocusedElement = null;
+    }
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeOverlays();
+});
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => {
+        if (e.target === overlay) closeOverlays();
+    });
+});
+
+document.querySelectorAll('[data-close-modal]').forEach(btn => {
+    btn.addEventListener('click', closeOverlays);
+});
+
+const iconSvg = id =>
+    `<svg width="12" height="12" aria-hidden="true"><use href="#${id}"></use></svg>`;
+
+/* ------------------------------------------------------------
+   Project modal
+   ------------------------------------------------------------ */
+function openProjectModal(id) {
     const p = projects[id];
     if (!p) return;
 
@@ -97,77 +200,168 @@ function openModal(id) {
     document.getElementById('modalDesc').innerHTML = p.desc;
 
     const hl = document.getElementById('modalHighlight');
-    const hlText = document.getElementById('modalHighlightText');
     if (p.highlight) {
-        hlText.textContent = p.highlight;
-        hl.style.display = 'block';
+        document.getElementById('modalHighlightText').textContent = p.highlight;
+        hl.hidden = false;
     } else {
-        hl.style.display = 'none';
+        hl.hidden = true;
     }
 
-    const techEl = document.getElementById('modalTech');
-    techEl.innerHTML = p.tech.map(t => `<span>${t}</span>`).join('');
+    document.getElementById('modalTech').innerHTML =
+        p.tech.map(t => `<span>${t}</span>`).join('');
 
-    const linksEl = document.getElementById('modalLinks');
     let linksHTML = '';
-    if (p.github && !p.github.startsWith('GITHUB')) {
-        linksHTML += `<a href="${p.github}" target="_blank" class="modal-link-btn primary">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-        GitHub
-    </a>`;
+    if (p.github) {
+        linksHTML += `<a href="${p.github}" target="_blank" rel="noopener" class="modal-link-btn primary">${iconSvg('icon-github')} GitHub</a>`;
     }
-    if (p.live && !p.live.startsWith('LIVE')) {
-        linksHTML += `<a href="${p.live}" target="_blank" class="modal-link-btn secondary">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      Live Demo
-    </a>`;
+    if (p.live) {
+        linksHTML += `<a href="${p.live}" target="_blank" rel="noopener" class="modal-link-btn secondary">${iconSvg('icon-globe')} Live Demo</a>`;
     }
-    if (!linksHTML) {
-        linksHTML = `<span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted)">Links coming soon</span>`;
-    }
-    linksEl.innerHTML = linksHTML;
+    document.getElementById('modalLinks').innerHTML =
+        linksHTML || `<span class="modal-links-empty">Links coming soon</span>`;
 
-    document.getElementById('projectModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    openOverlay(document.getElementById('projectModal'));
 }
 
-function closeModal() {
-    document.getElementById('projectModal').classList.remove('open');
-    document.body.style.overflow = '';
+/* ------------------------------------------------------------
+   Certificate modal
+   ------------------------------------------------------------ */
+function openCertModal(id) {
+    const c = certs[id];
+    if (!c) return;
+
+    document.getElementById('certModalIssuer').textContent = c.issuer.toUpperCase();
+    document.getElementById('certModalName').textContent = c.name;
+    document.getElementById('certModalDate').textContent = c.date;
+
+    const credWrap = document.getElementById('certModalCredWrap');
+    if (c.credentialId) {
+        document.getElementById('certModalCred').textContent = c.credentialId;
+        credWrap.style.display = '';
+    } else {
+        credWrap.style.display = 'none';
+    }
+
+    document.getElementById('certModalSkills').innerHTML =
+        c.skills.map(s => `<span>${s}</span>`).join('');
+
+    document.getElementById('certModalLinks').innerHTML = c.verifyUrl
+        ? `<a href="${c.verifyUrl}" target="_blank" rel="noopener" class="modal-link-btn primary">${iconSvg('icon-globe')} Verify Credential</a>`
+        : '';
+
+    // Show the certificate image if the file exists; placeholder otherwise
+    const img = document.getElementById('certModalImg');
+    const placeholder = document.getElementById('certModalPlaceholder');
+    img.hidden = true;
+    placeholder.hidden = false;
+    img.onload = () => { img.hidden = false; placeholder.hidden = true; };
+    img.onerror = () => { img.hidden = true; placeholder.hidden = false; };
+    img.alt = `${c.name} — ${c.issuer}`;
+    img.src = c.image;
+
+    openOverlay(document.getElementById('certModal'));
 }
 
-function handleOverlayClick(e) {
-    if (e.target === document.getElementById('projectModal')) closeModal();
+/* ------------------------------------------------------------
+   Card bindings — click + keyboard (Enter / Space)
+   ------------------------------------------------------------ */
+function bindCard(el, handler) {
+    el.addEventListener('click', handler);
+    el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handler();
+        }
+    });
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.querySelectorAll('[data-project]').forEach(card =>
+    bindCard(card, () => openProjectModal(card.dataset.project)));
 
-// Custom cursor
+document.querySelectorAll('[data-cert]').forEach(card =>
+    bindCard(card, () => openCertModal(card.dataset.cert)));
+
+/* ------------------------------------------------------------
+   Mobile navigation
+   ------------------------------------------------------------ */
+const navToggle = document.getElementById('nav-toggle');
+const navbar = document.getElementById('navbar');
+
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        const open = navbar.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', String(open));
+        navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+
+    // Close the menu after choosing a destination
+    document.querySelectorAll('.nav-links a').forEach(link =>
+        link.addEventListener('click', () => {
+            navbar.classList.remove('nav-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }));
+}
+
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+/* ------------------------------------------------------------
+   Custom cursor — rAF-driven trailing ring (desktop pointers only)
+   ------------------------------------------------------------ */
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
-document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    setTimeout(() => {
-        ring.style.left = e.clientX + 'px';
-        ring.style.top = e.clientY + 'px';
-    }, 80);
-});
-document.querySelectorAll('a,button').forEach(el => {
-    el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.borderColor = 'rgba(0,255,170,0.8)'; });
-    el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.borderColor = 'rgba(0,255,170,0.5)'; });
-});
 
-// Stars canvas
+if (!isTouchDevice && cursor && ring) {
+    let mouseX = -100, mouseY = -100;
+    let ringX = -100, ringY = -100;
+
+    document.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+    }, { passive: true });
+
+    (function trailRing() {
+        // Ease the ring toward the cursor for the trailing effect
+        ringX += (mouseX - ringX) * 0.18;
+        ringY += (mouseY - ringY) * 0.18;
+        ring.style.left = ringX + 'px';
+        ring.style.top = ringY + 'px';
+        requestAnimationFrame(trailRing);
+    })();
+
+    document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            ring.style.transform = 'translate(-50%,-50%) scale(1.8)';
+            ring.style.borderColor = 'rgba(0,255,170,0.8)';
+        });
+        el.addEventListener('mouseleave', () => {
+            ring.style.transform = 'translate(-50%,-50%) scale(1)';
+            ring.style.borderColor = 'rgba(0,255,170,0.5)';
+        });
+    });
+}
+
+/* ------------------------------------------------------------
+   Starfield — density scales with viewport, pauses when hidden,
+   renders a single static frame under reduced motion
+   ------------------------------------------------------------ */
 const canvas = document.getElementById('stars-canvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 let stars = [];
-function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-resize();
-window.addEventListener('resize', () => { resize(); initStars(); });
+let starsRunning = false;
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
 function initStars() {
+    const count = Math.min(180, Math.floor(window.innerWidth / 8));
     stars = [];
-    for (let i = 0; i < 180; i++) {
+    for (let i = 0; i < count; i++) {
         stars.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
@@ -178,62 +372,116 @@ function initStars() {
         });
     }
 }
-initStars();
-function drawStars(t) {
+
+function paintFrame(animate) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     stars.forEach(s => {
-        s.pulse += 0.01;
+        if (animate) s.pulse += 0.01;
         const opacity = s.o + Math.sin(s.pulse) * 0.15;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(200,220,255,${opacity})`;
         ctx.fill();
-        s.y -= s.speed;
-        if (s.y < 0) { s.y = canvas.height; s.x = Math.random() * canvas.width; }
+        if (animate) {
+            s.y -= s.speed;
+            if (s.y < 0) {
+                s.y = canvas.height;
+                s.x = Math.random() * canvas.width;
+            }
+        }
     });
     // Nebula glow spots
-    const grad1 = ctx.createRadialGradient(canvas.width * 0.8, canvas.height * 0.2, 0, canvas.width * 0.8, canvas.height * 0.2, 300);
-    grad1.addColorStop(0, 'rgba(124,107,255,0.04)');
-    grad1.addColorStop(1, 'transparent');
-    ctx.fillStyle = grad1; ctx.fillRect(0, 0, canvas.width, canvas.height);
-    const grad2 = ctx.createRadialGradient(canvas.width * 0.1, canvas.height * 0.7, 0, canvas.width * 0.1, canvas.height * 0.7, 250);
-    grad2.addColorStop(0, 'rgba(0,255,170,0.03)');
-    grad2.addColorStop(1, 'transparent');
-    ctx.fillStyle = grad2; ctx.fillRect(0, 0, canvas.width, canvas.height);
-    requestAnimationFrame(drawStars);
+    const g1 = ctx.createRadialGradient(canvas.width * 0.8, canvas.height * 0.2, 0, canvas.width * 0.8, canvas.height * 0.2, 300);
+    g1.addColorStop(0, 'rgba(124,107,255,0.04)');
+    g1.addColorStop(1, 'transparent');
+    ctx.fillStyle = g1;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const g2 = ctx.createRadialGradient(canvas.width * 0.1, canvas.height * 0.7, 0, canvas.width * 0.1, canvas.height * 0.7, 250);
+    g2.addColorStop(0, 'rgba(0,255,170,0.03)');
+    g2.addColorStop(1, 'transparent');
+    ctx.fillStyle = g2;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
-drawStars(0);
 
-// Scroll nav
-window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-});
+function starLoop() {
+    if (!starsRunning) return;
+    paintFrame(true);
+    requestAnimationFrame(starLoop);
+}
 
-// Typing effect
-const roles = ['Cybersecurity Student', 'Systems Builder', 'ML Enthusiast', 'Open Source Dev'];
-let ri = 0, ci = 0, deleting = false;
-const typed = document.getElementById('typed-text');
-function typeLoop() {
-    const word = roles[ri];
-    if (!deleting) {
-        typed.textContent = word.slice(0, ++ci);
-        if (ci === word.length) { deleting = true; setTimeout(typeLoop, 1800); return; }
-    } else {
-        typed.textContent = word.slice(0, --ci);
-        if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+function startStars() {
+    if (prefersReducedMotion) {
+        paintFrame(false);
+        return;
     }
-    setTimeout(typeLoop, deleting ? 60 : 100);
+    if (!starsRunning) {
+        starsRunning = true;
+        starLoop();
+    }
 }
-typeLoop();
 
-// Blink cursor
-setInterval(() => {
-    const b = document.getElementById('cursor-blink');
-    if (b) b.style.opacity = b.style.opacity === '0' ? '1' : '0';
-}, 500);
+function stopStars() {
+    starsRunning = false;
+}
 
-// Scroll animations
+if (canvas) {
+    resizeCanvas();
+    initStars();
+    startStars();
+
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        initStars();
+        if (prefersReducedMotion) paintFrame(false);
+    });
+
+    document.addEventListener('visibilitychange', () => {
+        document.hidden ? stopStars() : startStars();
+    });
+}
+
+/* ------------------------------------------------------------
+   Typing effect — static text under reduced motion
+   ------------------------------------------------------------ */
+const roles = ['Cybersecurity Student', 'Systems Builder', 'ML Enthusiast', 'Open Source Dev'];
+const typed = document.getElementById('typed-text');
+
+if (!typed) {
+    // Not on this page (e.g. resume.html) — skip the typing effect
+} else if (prefersReducedMotion) {
+    typed.textContent = roles[0];
+} else {
+    let ri = 0, ci = 0, deleting = false;
+    (function typeLoop() {
+        const word = roles[ri];
+        if (!deleting) {
+            typed.textContent = word.slice(0, ++ci);
+            if (ci === word.length) {
+                deleting = true;
+                setTimeout(typeLoop, 1800);
+                return;
+            }
+        } else {
+            typed.textContent = word.slice(0, --ci);
+            if (ci === 0) {
+                deleting = false;
+                ri = (ri + 1) % roles.length;
+            }
+        }
+        setTimeout(typeLoop, deleting ? 60 : 100);
+    })();
+}
+
+/* ------------------------------------------------------------
+   Scroll reveal
+   ------------------------------------------------------------ */
 const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+        }
+    });
 }, { threshold: 0.1 });
+
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
