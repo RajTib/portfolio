@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raj-tib.vercel.app/sitemap.xml

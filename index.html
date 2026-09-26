@@ -2,36 +2,39 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raj Tibarewala — Cybersecurity & Systems Engineer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Raj Tibarewala — AI / ML Engineer</title>
   <meta name="description"
-    content="Portfolio of Raj Tibarewala — B.Tech CSE (Cyber Security) at VIT Vellore. Security tooling, ML pipelines, and embedded systems: SIEM-Lite, GeoAI satellite inference, VTOP GPA Calculator, and more.">
+    content="Raj Tibarewala builds machine-learning systems for autonomous drones: explainable intrusion detection (AegisFlight), onboard vision on NVIDIA Jetson, and geospatial computer vision. B.Tech CSE (Cyber Security), VIT Vellore.">
   <meta name="author" content="Raj Tibarewala">
-  <meta name="theme-color" content="#050608">
+  <meta name="theme-color" content="#0a0b0d">
+  <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://raj-tib.vercel.app/">
 
-  <!-- Social sharing -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Raj Tibarewala — Cybersecurity & Systems Engineer">
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Raj Tibarewala">
+  <meta property="og:title" content="Raj Tibarewala — AI / ML Engineer">
   <meta property="og:description"
-    content="Security tooling, ML pipelines, and embedded systems — built to ship. B.Tech CSE (Cyber Security), VIT Vellore.">
+    content="Machine-learning systems for autonomous drones: explainable intrusion detection, onboard vision and geospatial computer vision.">
   <meta property="og:url" content="https://raj-tib.vercel.app/">
-  <meta property="og:image" content="https://raj-tib.vercel.app/assets/profile.jpg">
+  <meta property="og:image" content="https://raj-tib.vercel.app/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Raj Tibarewala — AI / ML Engineer. Machine learning for autonomous systems.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Raj Tibarewala — Cybersecurity & Systems Engineer">
+  <meta name="twitter:title" content="Raj Tibarewala — AI / ML Engineer">
   <meta name="twitter:description"
-    content="Security tooling, ML pipelines, and embedded systems — built to ship. B.Tech CSE (Cyber Security), VIT Vellore.">
-  <meta name="twitter:image" content="https://raj-tib.vercel.app/assets/profile.jpg">
+    content="Machine-learning systems for autonomous drones: explainable intrusion detection, onboard vision and geospatial computer vision.">
+  <meta name="twitter:image" content="https://raj-tib.vercel.app/assets/og.jpg">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap"
-    rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/geist-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="favicon-v2.ico">
-  <link rel="preload" as="image" href="assets/profile.jpg" fetchpriority="high">
+  <script src="script.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -39,590 +42,998 @@
     "@type": "Person",
     "name": "Raj Tibarewala",
     "url": "https://raj-tib.vercel.app/",
-    "image": "https://raj-tib.vercel.app/assets/profile.jpg",
+    "image": "https://raj-tib.vercel.app/assets/portrait.jpg",
     "email": "mailto:raj.tibarewala@gmail.com",
-    "jobTitle": "B.Tech CSE (Cyber Security) Student",
+    "jobTitle": "AI / ML Engineer",
+    "description": "Machine-learning systems for autonomous drones: intrusion detection, onboard vision and geospatial computer vision.",
     "affiliation": { "@type": "CollegeOrUniversity", "name": "Vellore Institute of Technology, Vellore" },
-    "sameAs": [
-      "https://github.com/RajTib",
-      "https://www.linkedin.com/in/raj-tibarewala/"
-    ]
+    "knowsAbout": ["Machine learning", "Computer vision", "Anomaly detection", "Edge AI", "Autonomous drones", "Cyber security"],
+    "sameAs": ["https://github.com/RajTib", "https://www.linkedin.com/in/raj-tibarewala/"]
   }
   </script>
 </head>
 
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <span id="nt" hidden>Opens in a new tab</span>
 
-  <!-- Icon sprite (defined once, referenced everywhere) -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-    <symbol id="icon-github" viewBox="0 0 24 24">
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24">
       <path fill="currentColor"
         d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
     </symbol>
-    <symbol id="icon-linkedin" viewBox="0 0 24 24">
+    <symbol id="i-linkedin" viewBox="0 0 24 24">
       <path fill="currentColor"
         d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
     </symbol>
-    <symbol id="icon-expand" viewBox="0 0 24 24">
-      <g fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="15 3 21 3 21 9" />
-        <polyline points="9 21 3 21 3 15" />
-        <line x1="21" y1="3" x2="14" y2="10" />
-        <line x1="3" y1="21" x2="10" y2="14" />
+    <symbol id="i-mail" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="m3.5 6.5 8.5 6.5 8.5-6.5" />
       </g>
     </symbol>
-    <symbol id="icon-phone" viewBox="0 0 24 24">
-      <path fill="none" stroke="currentColor" stroke-width="2"
-        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.03 2.82 2 2 0 012 .67h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+    <symbol id="i-ext" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+        d="M7 17 17 7M8 7h9v9" />
     </symbol>
-    <symbol id="icon-doc" viewBox="0 0 24 24">
-      <g fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <polyline points="14 2 14 8 20 8" />
-        <line x1="8" y1="13" x2="16" y2="13" />
-        <line x1="8" y1="17" x2="16" y2="17" />
+    <symbol id="i-down" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+        d="M12 5v14m-6-6 6 6 6-6" />
+    </symbol>
+    <symbol id="i-right" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+        d="M5 12h14m-6-6 6 6-6 6" />
+    </symbol>
+    <symbol id="i-up" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+        d="M12 19V5m-6 6 6-6 6 6" />
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+        <path d="M14 3v5h5M9 13h6M9 17h6" />
       </g>
     </symbol>
-    <symbol id="icon-globe" viewBox="0 0 24 24">
-      <g fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10" />
-        <line x1="2" y1="12" x2="22" y2="12" />
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    <symbol id="i-phone" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+        d="M21 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 4.2 2 2 0 0 1 3.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+    </symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="12" height="12" rx="2" />
+        <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
       </g>
+    </symbol>
+    <symbol id="i-window" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M3 9h18M7 6.5h.01M10 6.5h.01" />
+      </g>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="m5 12.5 4.5 4.5L19 7.5" />
     </symbol>
   </svg>
 
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
-  <canvas id="stars-canvas" aria-hidden="true"></canvas>
-
-  <nav id="navbar" aria-label="Main navigation">
-    <a href="#hero" class="nav-logo">RT<span>.dev</span></a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#certifications">Certs</a></li>
-      <li><a href="resume.html">Resume</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="mailto:raj.tibarewala@gmail.com" class="nav-cta">Let's Talk</a>
-      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links"
-        aria-label="Open menu">
-        <span></span><span></span><span></span>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Raj Tibarewala — back to top">
+        <span class="brand-mark" aria-hidden="true">RT</span>
+        <span class="brand-name">Raj Tibarewala</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="nav-toggle-label">Menu</span>
       </button>
-    </div>
-  </nav>
+      <div class="nav-panel" id="nav-panel">
+        <ul class="nav-links">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn--sm nav-resume" href="resume.html">
+          <svg class="icon" aria-hidden="true"><use href="#i-file" /></svg>
+          Resume
+        </a>
+      </div>
+    </nav>
+  </header>
 
   <main id="main">
 
-    <!-- HERO -->
-    <section id="hero">
-      <div class="hero-left">
-        <div class="hero-tag fade-up">B.Tech CSE — Cyber Security · VIT Vellore</div>
-        <h1 class="hero-name fade-up">
-          Raj<br>
-          <span class="line2">Tibarewala</span>
-        </h1>
-        <p class="hero-role fade-up">
-          <span class="typing" id="typed-text"></span><span class="typing-caret" id="cursor-blink"
-            aria-hidden="true">|</span>
-        </p>
-        <p class="hero-desc fade-up">
-          Third-year CSE (Cyber Security) student at VIT Vellore. I build security tooling, ML pipelines,
-          and embedded systems — and I care most about the ones that actually ship.
-        </p>
-        <div class="hero-btns fade-up">
-          <a href="#projects" class="btn-primary">View Projects</a>
-          <a href="#contact" class="btn-secondary">Get In Touch</a>
-        </div>
-        <div class="hero-socials fade-up">
-          <a href="https://github.com/RajTib" target="_blank" rel="noopener">
-            <svg width="14" height="14" aria-hidden="true"><use href="#icon-github" /></svg>
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/raj-tibarewala/" target="_blank" rel="noopener">
-            <svg width="14" height="14" aria-hidden="true"><use href="#icon-linkedin" /></svg>
-            LinkedIn
-          </a>
-          <a href="resume.html">
-            <svg width="14" height="14" aria-hidden="true"><use href="#icon-doc" /></svg>
-            Resume
-          </a>
-        </div>
-      </div>
-      <div class="hero-right">
-        <div class="hero-img-wrap fade-up">
-          <div class="hero-img-inner">
-            <img src="assets/profile.jpg" alt="Portrait of Raj Tibarewala" width="1680" height="1120"
-              fetchpriority="high" decoding="async" />
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-intro">
+          <p class="eyebrow">AI / ML Engineer <span class="sep" aria-hidden="true">/</span> Software Engineer</p>
+          <h1 class="hero-name" id="hero-title">Raj Tibarewala</h1>
+          <p class="hero-statement">
+            I build machine-learning systems that have to work <strong>outside the notebook</strong> — on drone
+            telemetry, aerial imagery and edge hardware with real compute limits.
+          </p>
+          <p class="hero-meta">
+            B.Tech CSE (Cyber Security) at VIT Vellore, class of 2028. Software &amp; R&amp;D at Team Ardra,
+            building autonomous drone systems.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#work">
+              View projects
+              <svg class="icon" aria-hidden="true"><use href="#i-down" /></svg>
+            </a>
+            <a class="btn" href="resume.html">
+              <svg class="icon" aria-hidden="true"><use href="#i-file" /></svg>
+              Resume
+            </a>
+            <ul class="hero-links" aria-label="Elsewhere">
+              <li>
+                <a class="link-quiet" href="https://github.com/RajTib" target="_blank" rel="noopener noreferrer"
+                  aria-describedby="nt">
+                  <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>GitHub
+                </a>
+              </li>
+              <li>
+                <a class="link-quiet" href="https://www.linkedin.com/in/raj-tibarewala/" target="_blank"
+                  rel="noopener noreferrer" aria-describedby="nt">
+                  <svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg>LinkedIn
+                </a>
+              </li>
+              <li>
+                <a class="link-quiet" href="#contact">
+                  <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>Contact
+                </a>
+              </li>
+            </ul>
           </div>
-          <div class="hero-coord">12.9716° N · 79.1588° E · VIT VELLORE</div>
+        </div>
+
+        <aside class="now" aria-labelledby="now-title">
+          <div class="now-top">
+            <span class="now-label">Currently building</span>
+            <span class="status status--live"><span class="dot" aria-hidden="true"></span>Ongoing · Stage 1
+              submitted</span>
+          </div>
+          <h2 class="now-title" id="now-title">AegisFlight</h2>
+          <p class="now-desc">
+            Explainable intrusion detection for drones: protocol rules, physics-consistency checks, ML anomaly
+            detection and firmware integrity, fused into one alert that states its evidence.
+          </p>
+          <p class="now-context">IIT Bombay TechFest 2026 · PUSHPAK Grand Challenge</p>
+          <dl class="now-facts">
+            <div>
+              <dt>Detectors</dt>
+              <dd>Protocol · physics · ML · firmware</dd>
+            </div>
+            <div>
+              <dt>ML</dt>
+              <dd>Benign-only Isolation Forest + Mahalanobis</dd>
+            </div>
+            <div>
+              <dt>Evaluation</dt>
+              <dd>23k+ decisions · multi-seed · ML-off ablation</dd>
+            </div>
+            <div>
+              <dt>Reality check</dt>
+              <dd>Replay of public PX4 / ALFA flight logs</dd>
+            </div>
+          </dl>
+          <div class="now-links">
+            <a class="link-accent" href="#aegisflight">
+              Read the case study
+              <svg class="icon" aria-hidden="true"><use href="#i-right" /></svg>
+            </a>
+            <a class="link-quiet" href="https://github.com/TeamArdra/techfest-2026" target="_blank"
+              rel="noopener noreferrer" aria-describedby="nt">
+              Repository
+              <svg class="icon" aria-hidden="true"><use href="#i-ext" /></svg>
+            </a>
+          </div>
+        </aside>
+
+        <dl class="readout">
+          <div>
+            <dt>Focus</dt>
+            <dd>Computer vision · anomaly detection · edge inference</dd>
+          </div>
+          <div>
+            <dt>Learning</dt>
+            <dd>LLMs · RAG · LangChain · inference optimization</dd>
+          </div>
+          <div>
+            <dt>Based in</dt>
+            <dd>Vellore, India · IST (UTC+5:30)</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow"><span class="idx">01</span> Selected work</p>
+          <h2 class="section-title" id="work-title">Systems I've built, and how I checked they work.</h2>
+        </header>
+
+        <!-- AegisFlight -->
+        <article class="case" id="aegisflight" aria-labelledby="aegisflight-title">
+          <div class="case-rail">
+            <p class="case-kicker">Featured · Currently building</p>
+            <h3 class="case-title" id="aegisflight-title">AegisFlight</h3>
+            <p class="case-sub">ML-based intrusion detection for drones</p>
+            <dl class="meta">
+              <div>
+                <dt>Status</dt>
+                <dd><span class="status status--live"><span class="dot" aria-hidden="true"></span>Ongoing</span>
+                  Stage 1 submitted</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2026</dd>
+              </div>
+              <div>
+                <dt>Context</dt>
+                <dd>IIT Bombay TechFest 2026 — PUSHPAK Grand Challenge (Security of Drones)</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>Team Ardra</dd>
+              </div>
+            </dl>
+            <ul class="stack" aria-label="Tech stack">
+              <li>Python</li>
+              <li>scikit-learn</li>
+              <li>NumPy</li>
+              <li>Pandas</li>
+              <li>pymavlink</li>
+              <li>FastAPI</li>
+              <li>WebSockets</li>
+              <li>React</li>
+              <li>pytest</li>
+            </ul>
+            <ul class="case-links">
+              <li>
+                <a href="https://github.com/TeamArdra/techfest-2026" target="_blank" rel="noopener noreferrer"
+                  aria-describedby="nt">
+                  <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+                  Repository
+                  <svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="case-main">
+            <p class="case-summary">
+              An explainable intrusion-detection system for drones commanded over MAVLink 2. Four independent
+              detectors watch the telemetry and command link; an evidence-fusion engine turns what they see into one
+              severity-ranked alert that says why it fired.
+            </p>
+
+            <div class="case-block">
+              <h4>Problem</h4>
+              <p>
+                A drone trusts its telemetry and command link. GPS spoofing, forged telemetry, injected commands, link
+                flooding and tampered firmware each leave different traces — and a single classifier trained on
+                simulated attacks risks learning the simulator instead of the attack. Operators also need to know
+                <em>why</em> an alert fired, not just that it did.
+              </p>
+            </div>
+
+            <div class="case-block">
+              <h4>Approach</h4>
+              <figure class="flow flow--5">
+                <ol class="flow-steps">
+                  <li class="flow-step">
+                    <span class="flow-k">Input</span>
+                    <span class="flow-v">Simulated flight emitting MAVLink 2, with injected attacks</span>
+                  </li>
+                  <li class="flow-step">
+                    <span class="flow-k">Features</span>
+                    <span class="flow-v">Decode → 11 online features: network, navigation, sensor, command</span>
+                  </li>
+                  <li class="flow-step flow-step--group">
+                    <span class="flow-k">Detectors</span>
+                    <ul class="flow-sub">
+                      <li>Protocol rules</li>
+                      <li>Physics consistency</li>
+                      <li>ML anomaly</li>
+                      <li>Firmware integrity</li>
+                    </ul>
+                  </li>
+                  <li class="flow-step flow-step--accent">
+                    <span class="flow-k">Fusion</span>
+                    <span class="flow-v">Severity, attack class and evidence per decision</span>
+                  </li>
+                  <li class="flow-step">
+                    <span class="flow-k">Output</span>
+                    <span class="flow-v">Hash-chained event log · FastAPI / WebSocket · React dashboard</span>
+                  </li>
+                </ol>
+                <figcaption>Pipeline as implemented in the Stage 1 repository.</figcaption>
+              </figure>
+              <div class="alert-sample" role="group" aria-label="Example alert format">
+                <span class="alert-sample-label">Alert format · from the demo runbook</span>
+                <code><span class="sev">HIGH</span> · GPS_SPOOFING — position residual &gt; 12 m (reported track
+                  diverges from velocity)</code>
+              </div>
+              <details class="more">
+                <summary>How each detector works</summary>
+                <ul class="points">
+                  <li><strong>Protocol rules</strong> — message rate, sequence gaps, rogue sources, liveness and command
+                    provenance.</li>
+                  <li><strong>Physics consistency</strong> — cross-checks physically coupled signals: position against
+                    the velocity-implied track, GPS against barometric altitude, heading against course, battery
+                    dynamics. Needs no attack data.</li>
+                  <li><strong>ML anomaly detection</strong> — an Isolation Forest + Mahalanobis ensemble trained only
+                    on benign flights.</li>
+                  <li><strong>Firmware integrity</strong> — SHA-256 manifest verification.</li>
+                  <li><strong>Evidence fusion</strong> — alerts carry human-readable evidence, are written to a SHA-256
+                    hash-chained log, and stream to the dashboard over WebSockets.</li>
+                </ul>
+              </details>
+            </div>
+
+            <div class="case-block">
+              <h4>How it's evaluated</h4>
+              <ul class="checks">
+                <li>
+                  <span class="checks-k">Leakage control</span>
+                  <p>Session-level splits, and the anomaly model never sees an attack during training.</p>
+                </li>
+                <li>
+                  <span class="checks-k">Reproducibility</span>
+                  <p>Scripted benchmark across multiple random seeds and attack scenarios — 23k+ scored decisions.
+                    Metrics are generated, never typed by hand.</p>
+                </li>
+                <li>
+                  <span class="checks-k">Ablation</span>
+                  <p>The same benchmark with ML switched off, to isolate what the model actually adds.</p>
+                </li>
+                <li>
+                  <span class="checks-k">Real flights</span>
+                  <p>Public PX4 and ALFA flight logs replayed through the pipeline for false-alarm analysis.</p>
+                </li>
+                <li>
+                  <span class="checks-k">Sim-to-real shift</span>
+                  <p>Kolmogorov–Smirnov tests measure how far real telemetry features drift from the simulator's.</p>
+                </li>
+                <li>
+                  <span class="checks-k">Tests</span>
+                  <p>pytest suite across unit, integration, end-to-end and API paths.</p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="case-block">
+              <h4>Status</h4>
+              <div class="note">
+                <p>
+                  Stage 1 submitted; development is ongoing. Results so far come from a reproducible local simulation,
+                  so detection of real attacks has not been validated yet — the real-log replay exists to show where
+                  simulator-tuned thresholds stop transferring. Next: live MAVLink ingestion, then SITL and
+                  hardware-in-the-loop validation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- GeoAI -->
+        <article class="case" id="geoai" aria-labelledby="geoai-title">
+          <div class="case-rail">
+            <p class="case-kicker">IIT Bombay TechFest 2025 · Finalist</p>
+            <h3 class="case-title" id="geoai-title">GeoAI</h3>
+            <p class="case-sub">Rooftop mapping from drone orthophotos</p>
+            <dl class="meta">
+              <div>
+                <dt>Status</dt>
+                <dd><span class="status status--award">Finalist</span> Completed</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2025</dd>
+              </div>
+              <div>
+                <dt>Context</dt>
+                <dd>IIT Bombay TechFest 2025 — GeoAI hackathon</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>Team Ardra</dd>
+              </div>
+            </dl>
+            <ul class="stack" aria-label="Tech stack">
+              <li>Python</li>
+              <li>Ultralytics YOLOv8</li>
+              <li>SegFormer</li>
+              <li>OpenCV</li>
+              <li>rasterio</li>
+              <li>Shapely</li>
+              <li>Docker</li>
+            </ul>
+            <ul class="case-links">
+              <li>
+                <a href="https://github.com/TeamArdra/geo-ai-techfest-2025" target="_blank" rel="noopener noreferrer"
+                  aria-describedby="nt">
+                  <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+                  Training pipeline
+                  <svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/RajTib/geo-ai-techfest-2025" target="_blank" rel="noopener noreferrer"
+                  aria-describedby="nt">
+                  <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+                  Inference app
+                  <svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://huggingface.co/spaces/team-ardra/geoai" target="_blank" rel="noopener noreferrer"
+                  aria-describedby="nt">
+                  <svg class="icon" aria-hidden="true"><use href="#i-window" /></svg>
+                  Hugging Face Space
+                  <svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg>
+                  <span class="link-note">may need a minute to wake</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="case-main">
+            <p class="case-summary">
+              A geospatial computer-vision pipeline that turns village-scale drone orthophotos and GIS shapefiles into
+              training data, then detects and classifies rooftops and utilities and segments water bodies and roads.
+            </p>
+
+            <div class="case-block">
+              <h4>Problem</h4>
+              <p>
+                Village orthophotos arrive as very large GeoTIFFs; the ground truth arrives as shapefiles in their own
+                coordinate reference system. Roof types look alike from above and the classes are imbalanced. None of
+                it is model-ready.
+              </p>
+            </div>
+
+            <div class="case-block">
+              <h4>Approach</h4>
+              <figure class="flow flow--5">
+                <ol class="flow-steps">
+                  <li class="flow-step">
+                    <span class="flow-k">Input</span>
+                    <span class="flow-v">GeoTIFF orthophotos + shapefiles</span>
+                  </li>
+                  <li class="flow-step">
+                    <span class="flow-k">Align &amp; tile</span>
+                    <span class="flow-v">CRS alignment, 640×640 tiles, empty-tile filtering</span>
+                  </li>
+                  <li class="flow-step">
+                    <span class="flow-k">Labels</span>
+                    <span class="flow-v">Shapefile → labels, 70 / 20 / 10 split</span>
+                  </li>
+                  <li class="flow-step flow-step--group">
+                    <span class="flow-k">Models</span>
+                    <ul class="flow-sub">
+                      <li>YOLOv8 · roof type + utilities</li>
+                      <li>SegFormer · water, roads</li>
+                    </ul>
+                  </li>
+                  <li class="flow-step flow-step--accent">
+                    <span class="flow-k">Ship</span>
+                    <span class="flow-v">Label, CRS &amp; visual QA → Dockerized inference</span>
+                  </li>
+                </ol>
+                <figcaption>Pipeline stages as built for the hackathon.</figcaption>
+              </figure>
+              <details class="more">
+                <summary>Pipeline details</summary>
+                <ul class="points">
+                  <li><strong>Data engineering</strong> — reprojected vector labels to the raster CRS, tiled
+                    orthophotos to 640×640, filtered empty tiles, generated labels from shapefiles and split
+                    70 / 20 / 10.</li>
+                  <li><strong>Detection</strong> — YOLOv8 rooftop detection with four roof classes (RCC, Tin, Tiled,
+                    Others), plus utility detection.</li>
+                  <li><strong>Segmentation</strong> — SegFormer semantic segmentation to extract water bodies and
+                    roads.</li>
+                  <li><strong>Quality gates</strong> — label validation, CRS validation and visual QA before training;
+                    Dockerized inference for reproducible deployment.</li>
+                </ul>
+              </details>
+            </div>
+
+            <div class="case-block">
+              <h4>Outcome</h4>
+              <div class="note">
+                <p>
+                  Finalist at IIT Bombay TechFest 2025, with an end-to-end pipeline from raw GeoTIFFs to a containerized
+                  inference service.
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Infinity-Snap -->
+        <article class="case case--compact" id="infinity-snap" aria-labelledby="snap-title">
+          <div class="case-rail">
+            <p class="case-kicker">Computer vision · Side project</p>
+            <h3 class="case-title" id="snap-title">Infinity-Snap</h3>
+            <p class="case-sub">Gesture-based file automation</p>
+            <dl class="meta">
+              <div>
+                <dt>Status</dt>
+                <dd><span class="status">Completed</span></dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2025</dd>
+              </div>
+            </dl>
+            <ul class="stack" aria-label="Tech stack">
+              <li>Python</li>
+              <li>OpenCV</li>
+              <li>MediaPipe</li>
+              <li>NumPy</li>
+            </ul>
+            <ul class="case-links">
+              <li>
+                <a href="https://github.com/RajTib/Infinity-Snap" target="_blank" rel="noopener noreferrer"
+                  aria-describedby="nt">
+                  <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+                  Repository
+                  <svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="case-main">
+            <p class="case-summary">
+              A real-time computer-vision pipeline that maps a webcam-detected hand gesture to an OS-level file
+              operation.
+            </p>
+            <div class="triad">
+              <div class="case-block">
+                <h4>Problem</h4>
+                <p>Trigger a system action with a physical gesture — without firing on ordinary hand movement.</p>
+              </div>
+              <div class="case-block">
+                <h4>Approach</h4>
+                <p>Tracks hand landmarks from the webcam and detects a finger snap from how the thumb–middle-finger
+                  distance changes between frames, with a guard against double triggers. Detection, command mapping
+                  and execution are separate, logged modules.</p>
+              </div>
+              <div class="case-block">
+                <h4>Outcome</h4>
+                <p>A Thanos-style snap that sends a random half of a target folder's files to the Recycle Bin —
+                  recoverable by design, never a hard delete.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Also built -->
+        <div class="also">
+          <h3 class="also-title" id="also-title">Also built</h3>
+          <ul class="also-list">
+            <li>
+              <div class="also-head">
+                <span class="also-name">SIEM-Lite</span>
+                <span class="also-stack">Python · Streamlit · 2026</span>
+              </div>
+              <p class="also-desc">Linux auth-log monitoring with rule- and correlation-based detection of SSH brute
+                force and privilege escalation, surfaced in a real-time Streamlit dashboard.</p>
+              <div class="also-links">
+                <a href="https://github.com/RajTib/siem-lite" target="_blank" rel="noopener noreferrer"
+                  aria-describedby="nt">GitHub<svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg></a>
+              </div>
+            </li>
+            <li>
+              <div class="also-head">
+                <span class="also-name">VTOP GPA Calculator</span>
+                <span class="also-stack">JavaScript · 2025</span>
+              </div>
+              <p class="also-desc">Computes GPA straight from VIT's VTOP timetable — courses, credits and eligibility
+                extracted, no manual entry. A public web tool for VIT students.</p>
+              <div class="also-links">
+                <a href="https://vtop-gpa-calculator.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  aria-describedby="nt">Live<svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg></a>
+                <a href="https://github.com/RajTib/vtop-gpa-calculator" target="_blank" rel="noopener noreferrer"
+                  aria-describedby="nt">GitHub<svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg></a>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="fade-up">
-        <div class="section-tag">About Me</div>
-        <h2 class="section-title">Security-First.<br>Systems Thinker.</h2>
-        <p class="about-bio">
-          I'm a <strong>3rd-year B.Tech CSE (Cyber Security)</strong> student at VIT Vellore. I sit at
-          the intersection of cybersecurity, machine learning, and systems engineering — building tools that solve real
-          problems, from lightweight SIEM pipelines to satellite-based ML inference systems.
-        </p>
-        <p class="about-bio">
-          Outside code, I research <strong>nuclear propulsion</strong>, contribute to <strong>autonomous drone
-            systems</strong>, and spend time with astrophysics datasets. I believe the best security engineers
-          understand how things break — so they can build what doesn't.
-        </p>
-      </div>
-      <div class="about-items fade-up">
-        <div class="about-item">
-          <div class="about-item-num">01</div>
-          <div class="about-item-text">
-            <strong>Security Research</strong>
-            <p>SSH brute-force detection, keylogger analysis, hybrid cryptography, threat modeling</p>
-          </div>
-        </div>
-        <div class="about-item">
-          <div class="about-item-num">02</div>
-          <div class="about-item-text">
-            <strong>ML & Geospatial Systems</strong>
-            <p>YOLO-based infrastructure detection, SegFormer segmentation, astrophysics data pipelines</p>
-          </div>
-        </div>
-        <div class="about-item">
-          <div class="about-item-num">03</div>
-          <div class="about-item-text">
-            <strong>Embedded & Autonomous Systems</strong>
-            <p>Jetson Orin Nano, Raspberry Pi, edge ML deployment, drone R&amp;D with Team Ardra</p>
-          </div>
-        </div>
-        <div class="about-item">
-          <div class="about-item-num">04</div>
-          <div class="about-item-text">
-            <strong>Technical Writing & Research</strong>
-            <p>Co-authored paper on nuclear thermal rocket propulsion; ISA astronomy research</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow"><span class="idx">02</span> Experience</p>
+          <h2 class="section-title" id="experience-title">Onboard, under real constraints.</h2>
+        </header>
 
-    <!-- EXPERIENCE -->
-    <section id="experience">
-      <div class="section-tag fade-up">Experience</div>
-      <h2 class="section-title fade-up">Where I've<br>Contributed</h2>
-      <div class="exp-grid">
-
-        <div class="exp-card fade-up">
-          <div>
-            <div class="exp-period">Sep 2025 — Present</div>
-            <div class="exp-org">Team Ardra</div>
+        <article class="role" aria-labelledby="ardra-title">
+          <div class="case-rail">
+            <p class="case-kicker">Sep 2025 – Present</p>
+            <h3 class="case-title" id="ardra-title">Team Ardra</h3>
+            <p class="case-sub">Software &amp; R&amp;D — Autonomous Drone Systems</p>
+            <dl class="meta">
+              <div>
+                <dt>Where</dt>
+                <dd>VIT Vellore</dd>
+              </div>
+              <div>
+                <dt>Hardware</dt>
+                <dd>NVIDIA Jetson Orin Nano · Raspberry Pi</dd>
+              </div>
+            </dl>
+            <ul class="stack stack--constraints" aria-label="Constraints worked within">
+              <li>Latency</li>
+              <li>Power</li>
+              <li>Compute</li>
+              <li>Integration</li>
+            </ul>
           </div>
-          <div>
-            <div class="exp-role">Senior Core — Software Domain</div>
-            <div class="exp-desc">Contributing to R&D of autonomous drone systems using embedded Linux platforms
-              (Raspberry Pi, Jetson Orin Nano). Performed system setup, debugging, validation, and deployed edge ML
-              pipelines optimized for latency and compute limits.</div>
-            <div class="exp-tags">
-              <span class="exp-tag">Jetson Orin</span>
-              <span class="exp-tag">Raspberry Pi</span>
-              <span class="exp-tag">Edge ML</span>
-              <span class="exp-tag">Linux</span>
+
+          <div class="case-main">
+            <p class="case-summary">
+              Team Ardra builds autonomous drones. I work on the software that runs on the aircraft itself, where ML has
+              to share a small computer with everything else and still keep up.
+            </p>
+            <div class="case-block">
+              <h4>What I do</h4>
+              <ul class="points">
+                <li>Build and validate embedded Linux software for onboard compute — NVIDIA Jetson Orin Nano and
+                  Raspberry Pi.</li>
+                <li>Deploy and tune onboard ML inference within latency, power and compute budgets.</li>
+                <li>Debug integration problems that cross sensor, compute and control boundaries.</li>
+                <li>Prototyped an onboard <strong>vision-serving architecture</strong> (FastAPI, PyTorch, Hugging Face
+                  DETR) that decouples camera capture, threaded model inference and live video streaming, so slow
+                  inference never stalls the feed.</li>
+              </ul>
+            </div>
+            <div class="case-block">
+              <h4>Vision-serving prototype</h4>
+              <figure class="flow flow--3">
+                <ol class="flow-steps">
+                  <li class="flow-step">
+                    <span class="flow-k">Camera thread</span>
+                    <span class="flow-v">Overwrites a single latest-frame slot — newest wins, no queue</span>
+                  </li>
+                  <li class="flow-step flow-step--group">
+                    <span class="flow-k">Independent loops</span>
+                    <ul class="flow-sub flow-sub--wide">
+                      <li><b>Inference worker</b> · DETR on the newest frame → latest detections</li>
+                      <li><b>Stream loop</b> · live MJPEG that never waits on inference</li>
+                    </ul>
+                  </li>
+                  <li class="flow-step flow-step--accent">
+                    <span class="flow-k">Ground station</span>
+                    <span class="flow-v">Smooth video, with detections delivered as structured data</span>
+                  </li>
+                </ol>
+                <figcaption>Prototype built on a laptop standing in for the Jetson; the question it answers is
+                  architectural — capture, inference and streaming must not block each other.</figcaption>
+              </figure>
             </div>
           </div>
-        </div>
+        </article>
 
-        <div class="exp-card fade-up">
-          <div>
-            <div class="exp-period">Jan 2026 — Present</div>
-            <div class="exp-org">Hindi Literary Association, VIT</div>
-          </div>
-          <div>
-            <div class="exp-role">Associate Director — Editorial & Documentation</div>
-            <div class="exp-desc">Led editorial team overseeing all written content including event scripts, reports,
-              and social media posts. Ensured high-quality, culturally rich content across all club communications.</div>
-            <div class="exp-tags">
-              <span class="exp-tag">Editorial</span>
-              <span class="exp-tag">Content Strategy</span>
-              <span class="exp-tag">Creative Writing</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="exp-card fade-up">
-          <div>
-            <div class="exp-period">Jun 2025 — Jul 2025</div>
-            <div class="exp-org">India Space Academy</div>
-          </div>
-          <div>
-            <div class="exp-role">Astronomy & Astrophysics Intern</div>
-            <div class="exp-desc">Completed a 4-week project-based internship analyzing Type Ia supernova datasets to
-              estimate the Hubble Constant (H₀) and age of the Universe. Validated results against Planck 2018
-              benchmarks.
-            </div>
-            <div class="exp-tags">
-              <span class="exp-tag">Python</span>
-              <span class="exp-tag">NumPy</span>
-              <span class="exp-tag">Data Analysis</span>
-              <span class="exp-tag">Astrophysics</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="exp-card fade-up">
-          <div>
-            <div class="exp-period">Mar 2025 — Present</div>
-            <div class="exp-org">SEDS VIT</div>
-          </div>
-          <div>
-            <div class="exp-role">Junior Core Member</div>
-            <div class="exp-desc">Active member contributing to space education and outreach events. Involved in
-              astrophysics-related workshops and event management at VIT's space engineering and development society.
-            </div>
-            <div class="exp-tags">
-              <span class="exp-tag">Astrophysics</span>
-              <span class="exp-tag">Event Management</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="section-tag fade-up">Technical Skills</div>
-      <h2 class="section-title fade-up">What I<br>Work With</h2>
-      <div class="skills-grid">
-        <div class="skill-card fade-up">
-          <div class="skill-card-title">Languages</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">C</span>
-            <span class="skill-tag">C++</span>
-            <span class="skill-tag">Java</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">HTML/CSS</span>
-          </div>
-        </div>
-        <div class="skill-card fade-up">
-          <div class="skill-card-title">Security</div>
-          <div class="skill-tags">
-            <span class="skill-tag">SIEM</span>
-            <span class="skill-tag">Linux Security</span>
-            <span class="skill-tag">Log Analysis</span>
-            <span class="skill-tag">Attack Correlation</span>
-            <span class="skill-tag">Cryptography</span>
-            <span class="skill-tag">Kali Linux</span>
-          </div>
-        </div>
-        <div class="skill-card fade-up">
-          <div class="skill-card-title">ML / Data</div>
-          <div class="skill-tags">
-            <span class="skill-tag">NumPy</span>
-            <span class="skill-tag">Pandas</span>
-            <span class="skill-tag">Scikit-learn</span>
-            <span class="skill-tag">OpenCV</span>
-            <span class="skill-tag">Matplotlib</span>
-            <span class="skill-tag">YOLOv8</span>
-          </div>
-        </div>
-        <div class="skill-card fade-up">
-          <div class="skill-card-title">Tools & Platforms</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Git</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Linux</span>
-            <span class="skill-tag">FastAPI</span>
-            <span class="skill-tag">Streamlit</span>
-            <span class="skill-tag">Jetson Nano</span>
-          </div>
+        <div class="also also--roles">
+          <h3 class="also-title" id="roles-title">Earlier</h3>
+          <ul class="also-list">
+            <li>
+              <div class="also-head">
+                <span class="also-name">Pinnacle Labs — Cybersecurity Intern</span>
+                <span class="also-stack">Remote · Feb – Mar 2026</span>
+              </div>
+              <p class="also-desc">Built Python security tooling: a hybrid AES + RSA text-encryption tool, and an
+                input-capture research tool for studying how interception works and how it is detected.</p>
+            </li>
+            <li>
+              <div class="also-head">
+                <span class="also-name">India Space Academy — Astronomy &amp; Astrophysics Intern</span>
+                <span class="also-stack">Remote · 2025</span>
+              </div>
+              <p class="also-desc">Structured programme followed by an independent data-analysis project: estimating the
+                Hubble constant from Type Ia supernova data (<a class="link-inline" href="#hubble">see Research</a>).
+              </p>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-      <div class="section-tag fade-up">Projects</div>
-      <h2 class="section-title fade-up">Selected<br>Work</h2>
-      <div class="projects-grid">
-
-        <article class="project-card fade-up" data-project="01" tabindex="0" role="button"
-          aria-haspopup="dialog" aria-label="SIEM-Lite — Linux Security Monitor. View details">
-          <span class="project-badge badge-sec">Security</span>
-          <div class="project-num">01</div>
-          <h3 class="project-title">SIEM-Lite — Linux Security Monitor</h3>
-          <div class="project-desc">Lightweight SIEM pipeline for real-time monitoring of Linux auth logs. Rule-based
-            SSH brute-force & privilege escalation detection with correlation-driven severity escalation.</div>
-          <div class="project-tech">
-            <span>Python</span><span>Streamlit</span><span>Linux</span>
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow"><span class="idx">03</span> About</p>
+          <h2 class="section-title" id="about-title">Where machine learning meets systems, security and research.</h2>
+        </header>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              I'm a computer-science undergraduate at VIT Vellore, specializing in cyber security. Most of my time goes
+              into machine learning that has to run somewhere real: on a drone's companion computer, against a MAVLink
+              telemetry stream, or across a village's worth of aerial imagery.
+            </p>
+            <p>
+              The security background shapes how I build ML. Before asking how accurate a model is, I ask how the system
+              fails, how it could be fooled, and whether my evaluation would notice. That's why AegisFlight ships with
+              an ML-off ablation and a real-flight replay, not just a headline number.
+            </p>
+            <p>
+              Research keeps me honest about evidence — from estimating the Hubble constant out of supernova data to
+              co-authoring a paper on nuclear thermal propulsion.
+            </p>
           </div>
-          <div class="project-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Details
-          </div>
-        </article>
-
-        <article class="project-card fade-up" data-project="02" tabindex="0" role="button"
-          aria-haspopup="dialog" aria-label="GeoAI Hack — IIT Bombay TechFest. View details">
-          <span class="project-badge badge-ml">ML · Hackathon</span>
-          <div class="project-num">02</div>
-          <h3 class="project-title">GeoAI Hack — IIT Bombay TechFest</h3>
-          <div class="project-desc">National hackathon at IIT Bombay. Built end-to-end GeoAI pipeline for infrastructure
-            detection using satellite imagery with YOLO & SegFormer. Deployed via FastAPI + Docker.</div>
-          <div class="project-tech">
-            <span>YOLOv8</span><span>SegFormer</span><span>FastAPI</span><span>Docker</span>
-          </div>
-          <div class="project-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Details
-          </div>
-        </article>
-
-        <article class="project-card fade-up" data-project="03" tabindex="0" role="button"
-          aria-haspopup="dialog" aria-label="VTOP GPA Calculator. View details">
-          <span class="project-badge badge-tool">Tool · MSP</span>
-          <div class="project-num">03</div>
-          <h3 class="project-title">VTOP GPA Calculator</h3>
-          <div class="project-desc">Automated GPA tool for VIT students that parses the full VTOP timetable — extracts
-            courses, credits, and eligibility. No manual entry. Deployed on Vercel, open-sourced MIT.</div>
-          <div class="project-tech">
-            <span>JavaScript</span><span>HTML5</span><span>Vercel</span>
-          </div>
-          <div class="project-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Details
-          </div>
-        </article>
-
-        <article class="project-card fade-up" data-project="04" tabindex="0" role="button"
-          aria-haspopup="dialog" aria-label="Cosmopedia. View details">
-          <span class="project-badge badge-web">Web Dev</span>
-          <div class="project-num">04</div>
-          <h3 class="project-title">Cosmopedia</h3>
-          <div class="project-desc">Interactive space encyclopedia inspired by Wikipedia — an exploratory reading
-            experience for space enthusiasts, designed in Figma and built with React.</div>
-          <div class="project-tech">
-            <span>React</span><span>JavaScript</span><span>HTML/CSS</span><span>Figma</span>
-          </div>
-          <div class="project-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Details
-          </div>
-        </article>
-
-        <article class="project-card fade-up" data-project="05" tabindex="0" role="button"
-          aria-haspopup="dialog" aria-label="Text Encryption Tool. View details">
-          <span class="project-badge badge-sec">Security</span>
-          <div class="project-num">05</div>
-          <h3 class="project-title">Text Encryption Tool</h3>
-          <div class="project-desc">Hybrid cryptography implementation combining AES (CBC mode) for fast symmetric
-            encryption and RSA-2048 for key protection. Mirrors HTTPS-style encryption for secure data handling.</div>
-          <div class="project-tech">
-            <span>Python</span><span>AES</span><span>RSA-2048</span><span>PBKDF2</span>
-          </div>
-          <div class="project-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Details
-          </div>
-        </article>
-
-        <article class="project-card fade-up" data-project="06" tabindex="0" role="button"
-          aria-haspopup="dialog" aria-label="Keylogger Research Tool. View details">
-          <span class="project-badge badge-sec">Security · Research</span>
-          <div class="project-num">06</div>
-          <h3 class="project-title">Keylogger Research Tool</h3>
-          <div class="project-desc">Educational keyboard behavior research tool built to understand how OS-level input
-            monitoring works and how it's detected by security software. Includes analytics dashboard.</div>
-          <div class="project-tech">
-            <span>Python</span><span>Tkinter</span><span>Matplotlib</span>
-          </div>
-          <div class="project-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Details
-          </div>
-        </article>
-
-        <article class="project-card fade-up" data-project="07" tabindex="0" role="button"
-          aria-haspopup="dialog" aria-label="Astrophysics Data Analysis. View details">
-          <span class="project-badge badge-ml">Astrophysics</span>
-          <div class="project-num">07</div>
-          <h3 class="project-title">Astrophysics Data Analysis</h3>
-          <div class="project-desc">Analyzed Type Ia supernova datasets to estimate the Hubble Constant (H₀) and age of
-            the Universe. Validated against Planck 2018 benchmarks using numerical analysis and visualization.</div>
-          <div class="project-tech">
-            <span>Python</span><span>NumPy</span><span>Pandas</span><span>Matplotlib</span>
-          </div>
-          <div class="project-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Details
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- CERTIFICATIONS -->
-    <section id="certifications">
-      <div class="section-tag fade-up">Certifications</div>
-      <h2 class="section-title fade-up">Credentials &<br>Recognition</h2>
-      <div class="certs-grid">
-        <article class="cert-card fade-up" data-cert="pinnacle" tabindex="0" role="button" aria-haspopup="dialog"
-          aria-label="Pinnacle Labs — Certificate of Internship. View certificate">
-          <div class="cert-issuer">Pinnacle Labs</div>
-          <h3 class="cert-name">Certificate of Internship</h3>
-          <div class="cert-date">Mar 2026</div>
-          <div class="cert-skills"><span class="cert-skill">Cybersecurity</span><span class="cert-skill">Linux</span>
-          </div>
-          <div class="cert-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Certificate
-          </div>
-        </article>
-        <article class="cert-card fade-up" data-cert="thm-presec" tabindex="0" role="button" aria-haspopup="dialog"
-          aria-label="TryHackMe — Pre Security Certificate. View certificate">
-          <div class="cert-issuer">TryHackMe</div>
-          <h3 class="cert-name">Pre Security Certificate</h3>
-          <div class="cert-date">Feb 2026 · ID: THM-9AGQEO61IF</div>
-          <div class="cert-skills"><span class="cert-skill">Cybersecurity</span><span class="cert-skill">Linux</span>
-          </div>
-          <div class="cert-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Certificate
-          </div>
-        </article>
-        <article class="cert-card fade-up" data-cert="google-foundations" tabindex="0" role="button"
-          aria-haspopup="dialog" aria-label="Google — Foundations of Cybersecurity. View certificate">
-          <div class="cert-issuer">Google</div>
-          <h3 class="cert-name">Foundations of Cybersecurity</h3>
-          <div class="cert-date">Dec 2025 · ID: EFNTCI2IBS6F</div>
-          <div class="cert-skills"><span class="cert-skill">Security Fundamentals</span></div>
-          <div class="cert-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Certificate
-          </div>
-        </article>
-        <article class="cert-card fade-up" data-cert="google-risks" tabindex="0" role="button" aria-haspopup="dialog"
-          aria-label="Google — Play It Safe: Manage Security Risks. View certificate">
-          <div class="cert-issuer">Google</div>
-          <h3 class="cert-name">Play It Safe: Manage Security Risks</h3>
-          <div class="cert-date">Dec 2025 · ID: ADEM4YO13VBT</div>
-          <div class="cert-skills"><span class="cert-skill">Risk Management</span><span
-              class="cert-skill">Security</span>
-          </div>
-          <div class="cert-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Certificate
-          </div>
-        </article>
-        <article class="cert-card fade-up" data-cert="isa-summer" tabindex="0" role="button" aria-haspopup="dialog"
-          aria-label="India Space Academy — Astronomy and Astrophysics Summer School. View certificate">
-          <div class="cert-issuer">India Space Academy</div>
-          <h3 class="cert-name">Astronomy & Astrophysics Summer School</h3>
-          <div class="cert-date">Jun 2025</div>
-          <div class="cert-skills"><span class="cert-skill">Data Analysis</span><span class="cert-skill">NumPy</span>
-            <span class="cert-skill">Data Cleaning</span>
-          </div>
-          <div class="cert-expand-hint">
-            <svg width="10" height="10" aria-hidden="true"><use href="#icon-expand" /></svg>
-            View Certificate
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="contact-inner">
-        <div class="section-tag section-tag-center fade-up">Contact</div>
-        <div class="contact-big fade-up">Let's Build<br><span>Something Real</span></div>
-        <p class="contact-sub fade-up">Open to internships, research collaborations, and interesting problems in
-          cybersecurity and systems. Based at VIT Vellore, working remotely too.</p>
-        <a href="mailto:raj.tibarewala@gmail.com" class="contact-email fade-up">raj.tibarewala@gmail.com</a>
-        <div class="contact-socials fade-up">
-          <a href="https://github.com/RajTib" target="_blank" rel="noopener" class="contact-social">
-            <svg width="14" height="14" aria-hidden="true"><use href="#icon-github" /></svg>
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/raj-tibarewala/" target="_blank" rel="noopener" class="contact-social">
-            <svg width="14" height="14" aria-hidden="true"><use href="#icon-linkedin" /></svg>
-            LinkedIn
-          </a>
-          <a href="resume.html" class="contact-social">
-            <svg width="14" height="14" aria-hidden="true"><use href="#icon-doc" /></svg>
-            Resume
-          </a>
-          <a href="tel:+919129837866" class="contact-social">
-            <svg width="14" height="14" aria-hidden="true"><use href="#icon-phone" /></svg>
-            +91 91298 37866
-          </a>
+          <figure class="portrait">
+            <img src="assets/portrait.jpg" alt="Raj Tibarewala, in a white shirt, photographed in black and white"
+              width="640" height="800" loading="lazy" decoding="async">
+          </figure>
         </div>
+
+        <ul class="intersections" aria-label="Areas of work">
+          <li>
+            <h3>AI / ML</h3>
+            <p>Detection, anomaly detection and computer vision — evaluated as if the result matters.</p>
+            <span class="ref">AegisFlight · GeoAI</span>
+          </li>
+          <li>
+            <h3>Systems</h3>
+            <p>Edge inference, threading and APIs: the plumbing that makes a model usable.</p>
+            <span class="ref">Team Ardra · AegisFlight</span>
+          </li>
+          <li>
+            <h3>Security</h3>
+            <p>Adversarial thinking applied to cyber-physical systems.</p>
+            <span class="ref">AegisFlight · SIEM-Lite</span>
+          </li>
+          <li>
+            <h3>Autonomy</h3>
+            <p>Onboard compute and integration on autonomous drones.</p>
+            <span class="ref">Team Ardra</span>
+          </li>
+          <li>
+            <h3>Research</h3>
+            <p>Astrophysics data analysis and propulsion literature.</p>
+            <span class="ref">Hubble analysis · NTR paper</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow"><span class="idx">04</span> Skills</p>
+          <h2 class="section-title" id="skills-title">What I work with — and where I've used it.</h2>
+        </header>
+
+        <div class="skills">
+          <div class="skill-row">
+            <h3 class="skill-area">Languages</h3>
+            <div class="skill-body">
+              <ul class="chips">
+                <li>Python</li>
+                <li>C++</li>
+                <li>C</li>
+                <li>Java</li>
+                <li>JavaScript</li>
+                <li>SQL</li>
+              </ul>
+            </div>
+            <p class="skill-where"><span>Used in</span> Python across every project here</p>
+          </div>
+          <div class="skill-row">
+            <h3 class="skill-area">ML &amp; data</h3>
+            <div class="skill-body">
+              <ul class="chips">
+                <li>scikit-learn</li>
+                <li>NumPy</li>
+                <li>Pandas</li>
+                <li>SciPy</li>
+                <li>Matplotlib</li>
+                <li>Jupyter</li>
+              </ul>
+              <p class="skill-methods">Anomaly detection · feature engineering · model evaluation · ablation studies ·
+                statistical analysis</p>
+            </div>
+            <p class="skill-where"><span>Used in</span> AegisFlight, Hubble analysis</p>
+          </div>
+          <div class="skill-row">
+            <h3 class="skill-area">Deep learning &amp; vision</h3>
+            <div class="skill-body">
+              <ul class="chips">
+                <li>PyTorch</li>
+                <li>Ultralytics YOLO</li>
+                <li>Hugging Face Transformers</li>
+                <li>OpenCV</li>
+                <li>rasterio</li>
+                <li>Shapely</li>
+              </ul>
+              <p class="skill-methods">Object detection · semantic segmentation · geospatial imagery</p>
+            </div>
+            <p class="skill-where"><span>Used in</span> GeoAI, Team Ardra, Infinity-Snap</p>
+          </div>
+          <div class="skill-row">
+            <h3 class="skill-area">Deployment &amp; systems</h3>
+            <div class="skill-body">
+              <ul class="chips">
+                <li>FastAPI</li>
+                <li>Docker</li>
+                <li>Linux</li>
+                <li>Git / GitHub</li>
+                <li>pytest</li>
+                <li>NVIDIA Jetson Orin Nano</li>
+                <li>Raspberry Pi</li>
+              </ul>
+            </div>
+            <p class="skill-where"><span>Used in</span> Team Ardra, AegisFlight, GeoAI</p>
+          </div>
+          <div class="skill-row">
+            <h3 class="skill-area">Frontend</h3>
+            <div class="skill-body">
+              <ul class="chips">
+                <li>React</li>
+                <li>JavaScript</li>
+              </ul>
+            </div>
+            <p class="skill-where"><span>Used in</span> AegisFlight dashboard, VTOP GPA Calculator</p>
+          </div>
+          <div class="skill-row">
+            <h3 class="skill-area">Security</h3>
+            <div class="skill-body">
+              <p class="skill-methods skill-methods--solo">Intrusion detection · threat modeling · log analysis &amp;
+                attack correlation · Linux security</p>
+            </div>
+            <p class="skill-where"><span>Used in</span> AegisFlight, SIEM-Lite</p>
+          </div>
+        </div>
+
+        <div class="learning">
+          <p class="learning-label">Currently learning <span>— not yet production experience</span></p>
+          <ul class="chips chips--dashed">
+            <li>LLMs</li>
+            <li>RAG</li>
+            <li>LangChain</li>
+            <li>Inference optimization</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="section" id="research" aria-labelledby="research-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow"><span class="idx">05</span> Research &amp; science</p>
+          <h2 class="section-title" id="research-title">Beyond the software stack.</h2>
+        </header>
+        <div class="research-grid">
+          <article class="paper" aria-labelledby="paper-title">
+            <p class="case-kicker">Paper · Co-author</p>
+            <h3 class="paper-title" id="paper-title">Nuclear Thermal Rocket: Design Considerations and Efficiency
+              Optimization for Deep-Space Explorations</h3>
+            <p class="paper-note">Co-authored under faculty supervision.</p>
+            <div class="case-block">
+              <h4>My contribution</h4>
+              <ul class="points">
+                <li>Literature review and background research on nuclear thermal propulsion</li>
+                <li>Technical structuring of the paper</li>
+                <li>Manuscript preparation</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="paper" id="hubble" aria-labelledby="hubble-title">
+            <p class="case-kicker">Astrophysics data analysis · 2025</p>
+            <h3 class="paper-title" id="hubble-title">Estimating the Hubble constant from Type Ia supernovae</h3>
+            <p class="paper-note"><span class="status">Completed</span> India Space Academy project</p>
+            <dl class="pao">
+              <div>
+                <dt>Problem</dt>
+                <dd>Measure the universe's expansion rate, H₀ — and from it the age of the universe — from observational
+                  supernova data.</dd>
+              </div>
+              <div>
+                <dt>Approach</dt>
+                <dd>Cleaned the Type Ia supernova dataset, removed outliers and fit the distance–redshift relation in
+                  Python.</dd>
+              </div>
+              <div>
+                <dt>Outcome</dt>
+                <dd>Estimated H₀ and the corresponding age of the universe, and validated the result against Planck 2018
+                  cosmological parameters.</dd>
+              </div>
+            </dl>
+            <ul class="stack" aria-label="Tech stack">
+              <li>Python</li>
+              <li>NumPy</li>
+              <li>Pandas</li>
+              <li>Matplotlib</li>
+            </ul>
+            <a class="link-quiet paper-link" href="https://github.com/RajTib/ISA-Summer-School" target="_blank"
+              rel="noopener noreferrer" aria-describedby="nt">
+              <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+              Repository
+              <svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section section--contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-main">
+          <p class="eyebrow"><span class="idx">06</span> Contact</p>
+          <h2 class="section-title" id="contact-title">Let's talk.</h2>
+          <p class="section-lead">
+            Email is the fastest way to reach me. I'm open to ML / AI and software engineering internships, and to
+            research collaborations in computer vision, anomaly detection and autonomous systems.
+          </p>
+          <div class="contact-email-row">
+            <a class="contact-email" href="mailto:raj.tibarewala@gmail.com">raj.tibarewala@gmail.com</a>
+            <button class="btn btn--sm copy-btn" type="button" data-copy="raj.tibarewala@gmail.com" hidden>
+              <svg class="icon icon--copy" aria-hidden="true"><use href="#i-copy" /></svg>
+              <svg class="icon icon--check" aria-hidden="true"><use href="#i-check" /></svg>
+              <span class="copy-label">Copy</span>
+            </button>
+            <span class="sr-only" role="status" id="copy-status"></span>
+          </div>
+        </div>
+
+        <dl class="contact-list">
+          <div>
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/RajTib" target="_blank" rel="noopener noreferrer"
+                aria-describedby="nt">github.com/RajTib<svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg></a></dd>
+          </div>
+          <div>
+            <dt>LinkedIn</dt>
+            <dd><a href="https://www.linkedin.com/in/raj-tibarewala/" target="_blank" rel="noopener noreferrer"
+                aria-describedby="nt">in/raj-tibarewala<svg class="icon icon--ext" aria-hidden="true"><use href="#i-ext" /></svg></a></dd>
+          </div>
+          <div>
+            <dt>Resume</dt>
+            <dd><a href="assets/Raj_Tibarewala_Resume.pdf">Download PDF</a> <span class="dd-sep">·</span> <a
+                href="resume.html">View online</a></dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd><a href="tel:+919129837866">+91 91298 37866</a></dd>
+          </div>
+          <div>
+            <dt>Location</dt>
+            <dd>Vellore, India · IST</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
   </main>
 
-  <!-- PROJECT MODAL -->
-  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-box">
-      <button class="modal-close" data-close-modal>[ ESC ] Close</button>
-      <div class="modal-num" id="modalNum"></div>
-      <h3 class="modal-title" id="modalTitle"></h3>
-      <span class="modal-badge" id="modalBadge"></span>
-      <div class="modal-desc" id="modalDesc"></div>
-      <div class="modal-highlight" id="modalHighlight" hidden>
-        <p id="modalHighlightText"></p>
-      </div>
-      <div class="modal-section-label">Tech Stack</div>
-      <div class="modal-tech" id="modalTech"></div>
-      <div class="modal-section-label">Links</div>
-      <div class="modal-links" id="modalLinks"></div>
-    </div>
-  </div>
-
-  <!-- CERTIFICATE MODAL -->
-  <div class="modal-overlay" id="certModal" role="dialog" aria-modal="true" aria-labelledby="certModalName">
-    <div class="modal-box">
-      <button class="modal-close" data-close-modal>[ ESC ] Close</button>
-      <div class="cert-modal-image" id="certModalImage">
-        <img id="certModalImg" alt="" loading="lazy" hidden>
-        <div class="cert-image-placeholder" id="certModalPlaceholder">
-          <svg width="24" height="24" aria-hidden="true"><use href="#icon-doc" /></svg>
-          <span>Certificate image coming soon</span>
-        </div>
-      </div>
-      <div class="modal-num" id="certModalIssuer"></div>
-      <h3 class="modal-title" id="certModalName"></h3>
-      <div class="cert-modal-meta">
-        <div class="cert-meta-item">
-          <span class="modal-section-label">Issued</span>
-          <span class="cert-meta-value" id="certModalDate"></span>
-        </div>
-        <div class="cert-meta-item" id="certModalCredWrap">
-          <span class="modal-section-label">Credential ID</span>
-          <span class="cert-meta-value" id="certModalCred"></span>
-        </div>
-      </div>
-      <div class="modal-section-label">Skills Covered</div>
-      <div class="modal-tech" id="certModalSkills"></div>
-      <div class="modal-links" id="certModalLinks"></div>
-    </div>
-  </div>
-
-  <footer>
-    <p>© 2026 Raj Tibarewala · Built with intention</p>
-    <div class="footer-status">
-      <div class="status-dot" aria-hidden="true"></div>
-      <p class="footer-status-text">AVAILABLE FOR OPPORTUNITIES</p>
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© 2026 Raj Tibarewala</p>
+      <p>Updated September 2026</p>
+      <a class="link-quiet" href="#top">
+        Back to top
+        <svg class="icon" aria-hidden="true"><use href="#i-up" /></svg>
+      </a>
     </div>
   </footer>
-  <script src="script.js" defer></script>
 </body>
 
 </html>

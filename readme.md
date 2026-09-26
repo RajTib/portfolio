@@ -1,77 +1,53 @@
-# ⚡ Raj Tibarewala — Portfolio
+# Raj Tibarewala — Portfolio
 
-> Cybersecurity • Systems • Builder
-> I break systems to understand them — then build better ones.
+Personal site of **Raj Tibarewala**, AI / ML engineer building machine-learning systems for autonomous drones:
+explainable intrusion detection (AegisFlight), onboard vision on NVIDIA Jetson, and geospatial computer vision.
 
----
-
-## 🚀 About This Project
-
-This is my personal portfolio website built to showcase my work, projects, and approach to problem-solving.
-
-Instead of using heavy frameworks, I focused on:
-
-* Clean design
-* Strong visual identity
-* Smooth interactions
-* Performance-first implementation
+**Live:** https://raj-tib.vercel.app
 
 ---
 
-## 🛠️ Tech Stack
+## Stack
 
-* **HTML5**
-* **CSS3 (Custom styling + animations)**
-* **JavaScript (Vanilla)**
-* Canvas API (for animated background)
-* Custom cursor + interaction effects
+Plain HTML, CSS and a small amount of vanilla JavaScript. No framework and no build step — the repository root is
+the deployed site (Vercel static hosting).
 
----
+| File | Purpose |
+|---|---|
+| `index.html` | Portfolio: hero + currently building, selected work, experience, about, skills, research, contact |
+| `resume.html` | Web resume. Its print stylesheet produces `assets/Raj_Tibarewala_Resume.pdf` |
+| `404.html` | Served by Vercel for unknown routes |
+| `style.css` | Design tokens and all styles — dark theme, one amber accent, Geist / Geist Mono |
+| `script.js` | Progressive enhancement only: header state, mobile menu, active-section highlighting, diagram reveal, copy-email |
+| `assets/fonts/` | Self-hosted Geist variable fonts (SIL Open Font License — see `LICENSE-Geist.txt`) |
+| `assets/og.jpg` | 1200×630 social preview image |
+| `vercel.json` | Security headers (CSP, frame, referrer, permissions) and long-lived font caching |
+| `.vercelignore` | Keeps `docs/` and superseded files out of the deployment |
 
-## ✨ Features
+Every section is readable with JavaScript disabled, and motion respects `prefers-reduced-motion`.
 
-* 🌌 Animated starfield background (canvas)
-* 🖱️ Custom cursor with trailing ring
-* ⚡ Cyberpunk-inspired UI (glow, gradients, scanlines)
-* 🎯 Smooth scroll + section navigation
-* ⌨️ Typing animation in hero section
-* 📦 Modular section-based layout
-* 🎨 Fully responsive design
+## Run locally
 
----
+Any static file server works:
 
-## 📂 Sections
+```bash
+npx serve .            # or: python -m http.server 8000
+```
 
-* Hero (Intro + Identity)
-* About
-* Experience
-* Skills
-* Projects
-* Certifications
-* Contact
+The CSP and other headers come from `vercel.json`, so they only apply on Vercel.
 
----
+## Updating content
 
-## 🧠 Philosophy
-
-This portfolio reflects how I approach systems:
-
-> Not just building interfaces —
-> but designing behavior, structure, and interaction.
+- **Projects** are `<article class="case">` blocks inside `#work` in `index.html`: the left rail holds metadata
+  (status, year, context, stack, links); the main column holds problem / approach / evaluation / status.
+- **Only publish verified facts.** Metrics, results and links must trace to a real run, repo or document.
+- **Resume:** edit `resume.html`, then regenerate the PDF — open it in Chrome or Edge → Print → *Save as PDF*,
+  A4, default margins, background graphics off → save over `assets/Raj_Tibarewala_Resume.pdf`. Keep it to one page.
+- After an update, change "Updated …" in the footer and on the resume page, and `lastmod` in `sitemap.xml`.
 
 ---
 
-## 🔥 Highlight Projects
-
-* **SnapScript** — Gesture-based file manipulation system
-* **Smart Smoke & Gas Detector (IoT)** — Real-time hazard detection
-* **Borderline** — Experimental system-based concept
-
-*(More inside the site → Projects section)*
-
----
-
-## Beyond Code
+## Beyond code
 
 I don’t just work with code — I work with patterns.
 
@@ -79,17 +55,3 @@ I don’t just work with code — I work with patterns.
 * Multiple poetry competition wins
 * State-level Spell Bee qualifier
 * Abacus runner-up & merit holder
-
-These shape how I think, design, and solve problems.
-
----
-
-## Note
-
-This portfolio is continuously evolving as I build new projects and refine my approach.
-
----
-
-## ⭐ If you like this
-
-Give it a star — or better, check out the projects :D
