@@ -57,6 +57,23 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <span id="nt" hidden>Opens in a new tab</span>
 
+  <!-- Ambient environment (fixed, behind all content) -->
+  <div class="fx" aria-hidden="true">
+    <canvas class="fx-canvas" id="fx-canvas"></canvas>
+    <div class="fx-grid"></div>
+    <div class="fx-glow"></div>
+    <div class="fx-scan"></div>
+  </div>
+
+  <!-- Short entry sequence; auto-dismisses via CSS even without JS -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <span class="boot-mark">RT</span>
+      <span class="boot-text">Initializing</span>
+      <span class="boot-bar"></span>
+    </div>
+  </div>
+
   <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <symbol id="i-github" viewBox="0 0 24 24">
       <path fill="currentColor"
@@ -151,6 +168,9 @@
         <div class="hero-intro">
           <p class="eyebrow">AI / ML Engineer <span class="sep" aria-hidden="true">·</span> Software Engineer</p>
           <h1 class="hero-name" id="hero-title">Raj Tibarewala</h1>
+          <p class="hero-rotator" aria-hidden="true" data-rotator>
+            <span class="rot-caret"></span><span class="rot-word">Building intelligent systems</span>
+          </p>
           <p class="hero-statement">
             I build intelligent software systems — machine learning and the backend it runs inside — for places with
             real constraints: drone telemetry, aerial imagery and edge hardware, where the code has to work
@@ -249,6 +269,8 @@
           </div>
         </dl>
       </div>
+      <span class="hero-coords hero-coords--tr" aria-hidden="true"><span class="tick"></span>12.9165° N · 79.1325° E</span>
+      <span class="hero-coords hero-coords--bl" aria-hidden="true">SYS · ONLINE — VELLORE / IST</span>
     </section>
 
     <!-- ============ PROOF ============ -->
@@ -274,7 +296,7 @@
     <!-- ============ WORK ============ -->
     <section class="section" id="work" aria-labelledby="work-title">
       <div class="container">
-        <header class="section-head section-head--work">
+        <header class="section-head section-head--work" data-index="01">
           <p class="eyebrow"><span class="idx">01</span> Selected work</p>
           <h2 class="section-title" id="work-title">Systems I've built, and how I checked they work.</h2>
           <div class="work-lens" role="group" aria-label="Filter work by focus" hidden>
@@ -710,7 +732,7 @@
     <!-- ============ EXPERIENCE ============ -->
     <section class="section" id="experience" aria-labelledby="experience-title">
       <div class="container">
-        <header class="section-head">
+        <header class="section-head" data-index="02">
           <p class="eyebrow"><span class="idx">02</span> Experience</p>
           <h2 class="section-title" id="experience-title">Onboard, under real constraints.</h2>
         </header>
@@ -810,7 +832,7 @@
     <!-- ============ ABOUT ============ -->
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="container">
-        <header class="section-head">
+        <header class="section-head" data-index="03">
           <p class="eyebrow"><span class="idx">03</span> About</p>
           <h2 class="section-title" id="about-title">Where machine learning meets software, systems and research.</h2>
         </header>
@@ -881,7 +903,7 @@
     <!-- ============ SKILLS ============ -->
     <section class="section" id="skills" aria-labelledby="skills-title">
       <div class="container">
-        <header class="section-head">
+        <header class="section-head" data-index="04">
           <p class="eyebrow"><span class="idx">04</span> Skills</p>
           <h2 class="section-title" id="skills-title">What I work with — and where I've used it.</h2>
         </header>
@@ -982,7 +1004,7 @@
     <!-- ============ RESEARCH ============ -->
     <section class="section" id="research" aria-labelledby="research-title">
       <div class="container">
-        <header class="section-head">
+        <header class="section-head" data-index="05">
           <p class="eyebrow"><span class="idx">05</span> Research &amp; science</p>
           <h2 class="section-title" id="research-title">Beyond the software stack.</h2>
         </header>
@@ -1043,7 +1065,7 @@
     <!-- ============ CONTACT ============ -->
     <section class="section section--contact" id="contact" aria-labelledby="contact-title">
       <div class="container contact-grid">
-        <div class="contact-main">
+        <div class="contact-main" data-index="06">
           <p class="eyebrow"><span class="idx">06</span> Contact</p>
           <h2 class="section-title" id="contact-title">Let's talk.</h2>
           <p class="section-lead">
