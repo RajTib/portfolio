@@ -128,8 +128,10 @@ by a CDP `captureScreenshot` timeout in this environment — a tooling issue, no
 - Code-review (code-reviewer agent) findings pending consolidation at time of writing — apply, then re-verify.
 - Mobile rendering not visually confirmed (see §8) — do a real mobile screenshot pass when tooling allows.
 - resume.html tagline already AI/ML-first & consistent; left unchanged to avoid desyncing from the PDF.
-- `readme.md` still promises projects not on the site (cross-artifact drift) — future hygiene pass.
-- UniNav not added (needs link + specifics from Raj).
+- `readme.md` cross-artifact pass DONE (commit after 94fc307): positioning line rewritten to the new AI/ML +
+  software framing, `script.js` row + a new "Project lens" maintenance note added so `data-genres` tags stay in
+  sync. Its "Beyond code" personal section (poet/spell-bee/abacus) is intentionally README-only.
+- UniNav not added (needs link + specifics from Raj) — the only content item still blocked on the user.
 
 ## 10. Git state
 
@@ -141,9 +143,16 @@ so they'll go in one honest, well-described commit after the code review is appl
 
 ## 11. EXACT recommended next action
 
-1. Consolidate the code-reviewer findings; apply the anchor-reset fix (§9 P0) + any P0/P1 issues.
-2. Re-verify in the browser via DOM/JS assertions (server: `python -m http.server 8123`, load
-   `http://127.0.0.1:8123/index.html`, **hard-reload Ctrl+Shift+R** — python's server sends no Cache-Control
-   so sub-resources cache; bust with that or a `?v=` query).
-3. Commit the refinement on `feat/portfolio-redesign-2026` with a message documenting both layers.
-4. Then (future): real mobile screenshot pass; README rewrite; ask Raj for UniNav link to add a Software card.
+Positioning + lens (commit `94fc307`) and the README cross-artifact pass are DONE. All P0/P1 items from the
+checkpoint are complete and committed. Remaining work is P2/optional and/or blocked on the user:
+
+1. **Real mobile screenshot pass** (P2) — the genre lens, proof band and intersections were verified
+   overflow-free and structurally sound, but NOT visually confirmed at phone widths (the browser extension's
+   `captureScreenshot` timed out and its viewport couldn't be forced <1920 this session). When tooling allows:
+   serve (`python -m http.server 8123`, hard-reload Ctrl+Shift+R to bypass cache), check the pill-bar wrap and
+   proof-band stacking at 360–414px, and keyboard/focus + reduced-motion visually.
+2. **UniNav** (blocked on Raj) — add a Software-tagged project card once he supplies a repo link + specifics.
+3. Optional polish: `.intersections` lone-orphan tile at some widths (cosmetic; 6 tiles currently, acceptable).
+
+No further autonomous code changes are needed to reach a shippable state — the site is at a clean, committed,
+verified checkpoint.
