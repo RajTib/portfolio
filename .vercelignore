@@ -1,0 +1,11 @@
+# Internal notes and working files — not part of the deployed site
+docs/
+readme.md
+favicon_io/
+
+# Superseded assets kept in the repo but not deployed:
+# - old resume (CGPA 8.70, pre-Sept 2026); the site links assets/Raj_Tibarewala_Resume.pdf
+# - previous favicon and full-size photo; the site uses favicon.svg/favicon.ico and assets/portrait.jpg
+assets/Raj-Tibarewala-Resume.pdf
+favicon-v2.ico
+assets/profile.jpg

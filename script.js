@@ -1,275 +1,572 @@
-// Project modal data
-const projects = {
-    '01': {
-        num: '01 / SECURITY',
-        title: 'SIEM-Lite: Linux Security Monitor',
-        badge: 'Security',
-        badgeClass: 'badge-sec',
-        desc: `A lightweight <strong>SIEM-style security dashboard</strong> built to monitor Linux authentication logs in real time. The system parses <code>/var/log/auth.log</code> and flags suspicious activity — SSH brute-force attempts (repeated failed logins), unauthorized <strong>chmod/chown</strong> calls, and privilege escalation patterns. Alerts are correlated by severity and surfaced through a Streamlit dashboard. Built to understand how production SIEM tools work at their core, without the enterprise overhead.`,
-        highlight: null,
-        tech: ['Python', 'Streamlit', 'Linux', 'Log Parsing', 'Rule Engine'],
-        github: 'https://github.com/RajTib/siem-lite',
-        live: null
-    },
-    '02': {
-        num: '02 / ML · HACKATHON',
-        title: 'GeoAI Hack: IIT Bombay TechFest',
-        badge: 'ML · Hackathon',
-        badgeClass: 'badge-ml',
-        desc: `Built at the <strong>GeoAI National Hackathon, IIT Bombay TechFest</strong>. The pipeline extracts rooftop features from satellite imagery of Indian villages — classifying roof types using <strong>YOLOv8 object detection</strong> and <strong>SegFormer semantic segmentation</strong>. The full stack was containerized with Docker and served via a FastAPI backend. This kind of geospatial ML has real-world applications in urban planning, disaster response, and infrastructure surveying.`,
-        highlight: null,
-        tech: ['YOLOv8', 'SegFormer', 'FastAPI', 'Docker', 'Python', 'Satellite Imagery'],
-        github: 'https://github.com/RajTib/geo-ai-techfest-2025',
-        live: 'https://huggingface.co/spaces/team-ardra/geoai?logs=container'
-    },
-    '03': {
-        num: '03 / TOOL · MSP',
-        title: 'VTOP GPA Calculator',
-        badge: 'Tool · MSP',
-        badgeClass: 'badge-tool',
-        desc: `Most GPA calculators make you manually type every subject — this one doesn't. The <strong>VTOP GPA Calculator</strong> parses your timetable directly from VIT's VTOP portal, auto-extracting all courses, credit hours, and eligibility status. Zero manual input. Built as my <strong>Mini Student Project (MSP)</strong> and deployed on Vercel under an MIT license. Designed for actual VIT students, by one.`,
-        highlight: '13,000+ impressions · 240 likes · 10 comments on LinkedIn',
-        tech: ['JavaScript', 'HTML5', 'CSS3', 'Vercel', 'DOM Parsing'],
-        github: 'https://github.com/RajTib/vtop-gpa-calculator',
-        live: 'https://vtop-gpa-calculator.vercel.app/'
-    },
-    '04': {
-        num: '04 / WEB-DEVELOPMENT',
-        title: 'Cosmopedia',
-        badge: 'Web Dev',
-        badgeClass: 'badge-web',
-        desc: `Created an online encyclopedia for only space enthusiasts to explore and know about space in a much more fun and interactive way. Inspired by Wikipedia.`,
-        highlight: null,
-        tech: ['HTML5', 'CSS3', 'JS', 'ReactJS', 'Figma'],
-        github: 'https://github.com/RajTib/ISA-Summer-School',
-        live: 'https://cosmopedia-brown.vercel.app/'
-    },
-    '05': {
-        num: '05 / SECURITY',
-        title: 'Text Encryption Tool',
-        badge: 'Security',
-        badgeClass: 'badge-sec',
-        desc: `A <strong>hybrid encryption tool</strong> built during the Pinnacle Labs internship. Combines <strong>AES-256 (CBC mode)</strong> for fast, symmetric encryption of the actual data with <strong>RSA-2048</strong> to securely wrap the AES key — the same model HTTPS uses under the hood. Includes PBKDF2 key derivation for added resistance against brute-force. A practical deep-dive into why real-world encryption is never just one algorithm.`,
-        highlight: null,
-        tech: ['Python', 'AES-256', 'RSA-2048', 'PBKDF2', 'CBC Mode'],
-        github: 'https://github.com/RajTib/text-encryption-tool',
-        live: null
-    },
-    '06': {
-        num: '06 / SECURITY · RESEARCH',
-        title: 'Keylogger Research Tool',
-        badge: 'Security · Research',
-        badgeClass: 'badge-sec',
-        desc: `Built during the <strong>Pinnacle Labs internship</strong> as an educational research tool. Captures keystroke data at the OS level to understand exactly how keyloggers operate — and more importantly, how security software detects and flags them. Comes with a <strong>Tkinter GUI dashboard</strong> and Matplotlib visualizations for key frequency analysis. Understanding the attacker's tooling is step one in building better defenses.`,
-        highlight: null,
-        tech: ['Python', 'Tkinter', 'Matplotlib', 'OS-level Input Hooks'],
-        github: 'https://github.com/RajTib/keylogger-tool',
-        live: null
-    },
-    '07': {
-        num: '07 / ASTROPHYSICS',
-        title: 'Astrophysics Data Analysis',
-        badge: 'Astrophysics',
-        badgeClass: 'badge-ml',
-        desc: `Used <strong>Type Ia supernova datasets</strong> to independently calculate the <strong>Hubble Constant (H₀)</strong> and estimate the age of the Universe. The pipeline involved CSV ingestion, data cleaning, outlier removal, and regression analysis — then validating the derived H₀ against <strong>Planck 2018 benchmarks</strong>. Built during the India Space Academy Summer School internship. Equal parts astrophysics and data engineering.`,
-        highlight: null,
-        tech: ['Python', 'NumPy', 'Pandas', 'Matplotlib', 'Data Cleaning', 'Regression'],
-        github: 'https://github.com/RajTib/ISA-Summer-School',
-        live: null
-    }
-};
+/* ==========================================================================
+   Raj Tibarewala — portfolio interactions
+   Progressive enhancement only: every section is readable without this file.
+   Features: header state · mobile menu · section highlighting · project
+   lens (filter) · diagram reveal · copy email.
+   ========================================================================== */
 
-const certs = {
-    
-}
+'use strict';
 
-function openModal(id) {
-    const p = projects[id];
-    if (!p) return;
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const header = document.querySelector('.site-header');
 
-    document.getElementById('modalNum').textContent = p.num;
-    document.getElementById('modalTitle').textContent = p.title;
+  /* ---------- Header background once the page scrolls ---------- */
+  if (header) {
+    const syncHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+    syncHeader();
+    window.addEventListener('scroll', syncHeader, { passive: true });
+  }
 
-    const badge = document.getElementById('modalBadge');
-    badge.textContent = p.badge;
-    badge.className = 'modal-badge ' + p.badgeClass;
+  /* ---------- Mobile menu (disclosure pattern) ---------- */
+  const toggle = document.querySelector('.nav-toggle');
+  const panel = document.getElementById('nav-panel');
 
-    document.getElementById('modalDesc').innerHTML = p.desc;
+  if (header && toggle && panel) {
+    const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
 
-    const hl = document.getElementById('modalHighlight');
-    const hlText = document.getElementById('modalHighlightText');
-    if (p.highlight) {
-        hlText.textContent = p.highlight;
-        hl.style.display = 'block';
-    } else {
-        hl.style.display = 'none';
-    }
+    const setOpen = (open, { restoreFocus = false } = {}) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      header.classList.toggle('menu-open', open);
+      if (!open && restoreFocus) toggle.focus();
+    };
 
-    const techEl = document.getElementById('modalTech');
-    techEl.innerHTML = p.tech.map(t => `<span>${t}</span>`).join('');
+    toggle.addEventListener('click', () => setOpen(!isOpen()));
 
-    const linksEl = document.getElementById('modalLinks');
-    let linksHTML = '';
-    if (p.github && !p.github.startsWith('GITHUB')) {
-        linksHTML += `<a href="${p.github}" target="_blank" class="modal-link-btn primary">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-        GitHub
-    </a>`;
-    }
-    if (p.live && !p.live.startsWith('LIVE')) {
-        linksHTML += `<a href="${p.live}" target="_blank" class="modal-link-btn secondary">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      Live Demo
-    </a>`;
-    }
-    if (!linksHTML) {
-        linksHTML = `<span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted)">Links coming soon</span>`;
-    }
-    linksEl.innerHTML = linksHTML;
-
-    document.getElementById('projectModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-    document.getElementById('projectModal').classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-function handleOverlayClick(e) {
-    if (e.target === document.getElementById('projectModal')) closeModal();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-// Mobile nav menu
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-
-function openMenu() {
-    navMenu.classList.add('open');
-    navToggle.classList.add('active');
-    navToggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-    const firstLink = navMenu.querySelector('a');
-    if (firstLink) firstLink.focus();
-}
-
-function closeMenu() {
-    navMenu.classList.remove('open');
-    navToggle.classList.remove('active');
-    navToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-}
-
-navToggle.addEventListener('click', () => {
-    navMenu.classList.contains('open') ? closeMenu() : openMenu();
-});
-
-navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && navMenu.classList.contains('open')) {
-        closeMenu();
-        navToggle.focus();
-    }
-});
-
-// Custom cursor
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    setTimeout(() => {
-        ring.style.left = e.clientX + 'px';
-        ring.style.top = e.clientY + 'px';
-    }, 80);
-});
-document.querySelectorAll('a,button').forEach(el => {
-    el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.borderColor = 'rgba(0,255,170,0.8)'; });
-    el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.borderColor = 'rgba(0,255,170,0.5)'; });
-});
-
-// Stars canvas
-const canvas = document.getElementById('stars-canvas');
-const ctx = canvas.getContext('2d');
-let stars = [];
-function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-resize();
-window.addEventListener('resize', () => { resize(); initStars(); });
-function initStars() {
-    stars = [];
-    for (let i = 0; i < 180; i++) {
-        stars.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: Math.random() * 1.2 + 0.2,
-            o: Math.random() * 0.6 + 0.1,
-            speed: Math.random() * 0.3 + 0.05,
-            pulse: Math.random() * Math.PI * 2
-        });
-    }
-}
-initStars();
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function drawStars(t) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(s => {
-        s.pulse += 0.01;
-        const opacity = s.o + Math.sin(s.pulse) * 0.15;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200,220,255,${opacity})`;
-        ctx.fill();
-        if (!reduceMotion) {
-            s.y -= s.speed;
-            if (s.y < 0) { s.y = canvas.height; s.x = Math.random() * canvas.width; }
-        }
+    // Choosing a destination closes the menu.
+    panel.addEventListener('click', event => {
+      if (event.target.closest('a')) setOpen(false);
     });
-    // Nebula glow spots
-    const grad1 = ctx.createRadialGradient(canvas.width * 0.8, canvas.height * 0.2, 0, canvas.width * 0.8, canvas.height * 0.2, 300);
-    grad1.addColorStop(0, 'rgba(124,107,255,0.04)');
-    grad1.addColorStop(1, 'transparent');
-    ctx.fillStyle = grad1; ctx.fillRect(0, 0, canvas.width, canvas.height);
-    const grad2 = ctx.createRadialGradient(canvas.width * 0.1, canvas.height * 0.7, 0, canvas.width * 0.1, canvas.height * 0.7, 250);
-    grad2.addColorStop(0, 'rgba(0,255,170,0.03)');
-    grad2.addColorStop(1, 'transparent');
-    ctx.fillStyle = grad2; ctx.fillRect(0, 0, canvas.width, canvas.height);
-    requestAnimationFrame(drawStars);
-}
-drawStars(0);
 
-// Scroll nav
-window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-});
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && isOpen()) setOpen(false, { restoreFocus: true });
+    });
 
-// Typing effect
-const roles = ['Cybersecurity Student', 'Systems Builder', 'ML Enthusiast', 'Open Source Dev'];
-let ri = 0, ci = 0, deleting = false;
-const typed = document.getElementById('typed-text');
-function typeLoop() {
-    const word = roles[ri];
-    if (!deleting) {
-        typed.textContent = word.slice(0, ++ci);
-        if (ci === word.length) { deleting = true; setTimeout(typeLoop, 1800); return; }
+    // Clicking outside the header, or tabbing out of it, closes the menu.
+    document.addEventListener('click', event => {
+      if (isOpen() && !header.contains(event.target)) setOpen(false);
+    });
+
+    header.addEventListener('focusout', event => {
+      if (isOpen() && event.relatedTarget && !header.contains(event.relatedTarget)) setOpen(false);
+    });
+
+    // Returning to the desktop layout resets the menu state.
+    window.matchMedia('(min-width: 900px)').addEventListener('change', event => {
+      if (event.matches) setOpen(false);
+    });
+  }
+
+  /* ---------- Highlight the nav link for the section in view ---------- */
+  const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+
+  if (navLinks.length && 'IntersectionObserver' in window) {
+    const linkFor = new Map(navLinks.map(link => [link.getAttribute('href').slice(1), link]));
+    const targets = [document.getElementById('top'), ...Array.from(linkFor.keys(), id => document.getElementById(id))]
+      .filter(Boolean);
+
+    const setCurrent = id => {
+      navLinks.forEach(link => link.removeAttribute('aria-current'));
+      const link = linkFor.get(id);
+      if (link) link.setAttribute('aria-current', 'true');
+    };
+
+    const lastId = navLinks[navLinks.length - 1].getAttribute('href').slice(1);
+    const atPageEnd = () => window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+
+    const spy = new IntersectionObserver(entries => {
+      if (atPageEnd()) return;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setCurrent(entry.target.id);
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    targets.forEach(target => spy.observe(target));
+
+    // The last section can be too short to ever cross the detection band on tall screens.
+    window.addEventListener('scroll', () => {
+      if (atPageEnd()) setCurrent(lastId);
+    }, { passive: true });
+
+    // Reflect the choice immediately instead of waiting for the scroll to finish.
+    navLinks.forEach(link => link.addEventListener('click', () => setCurrent(link.getAttribute('href').slice(1))));
+  }
+
+  /* ---------- Flow diagrams: build left-to-right once, when first seen ---------- */
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const flows = Array.from(document.querySelectorAll('.flow'));
+
+    const reveal = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        // Swap (not add) so no hidden state lingers for print or later style changes.
+        entry.target.classList.replace('is-armed', 'is-running');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+
+    flows.forEach(flow => {
+      // Only arm diagrams that start below the fold, so nothing visible ever flickers.
+      if (flow.getBoundingClientRect().top > window.innerHeight) {
+        flow.classList.add('is-armed');
+        reveal.observe(flow);
+      }
+    });
+  }
+
+  /* ---------- Work lens: filter projects by focus ---------- */
+  const lensBar = document.querySelector('.work-lens');
+  const work = document.getElementById('work');
+
+  if (lensBar && work) {
+    const buttons = Array.from(lensBar.querySelectorAll('.lens'));
+    const countEl = lensBar.querySelector('.lens-count');
+    const statusEl = document.getElementById('lens-status');
+    const cases = Array.from(work.querySelectorAll('.case'));
+    const alsoItems = Array.from(work.querySelectorAll('.also-list li'));
+    const alsoBlock = work.querySelector('.also');
+    const items = [...cases, ...alsoItems];
+    const total = items.length;
+
+    const labels = { all: 'All', aiml: 'AI/ML', software: 'Software', systems: 'Systems', cv: 'Computer Vision', security: 'Security' };
+    const matches = (el, lens) => lens === 'all' || (el.dataset.genres || '').split(' ').includes(lens);
+
+    const apply = (lens, announce) => {
+      const survivors = [];
+      items.forEach(el => {
+        const ok = matches(el, lens);
+        el.hidden = !ok;
+        el.querySelectorAll('.genre').forEach(g => {
+          g.classList.toggle('is-lit', lens !== 'all' && ok && g.dataset.g === lens);
+        });
+        if (ok) survivors.push(el);
+      });
+
+      // Hide the "Also built" block entirely when none of its items match.
+      if (alsoBlock) alsoBlock.hidden = !alsoItems.some(li => !li.hidden);
+
+      const shown = survivors.length;
+      if (countEl) countEl.textContent = shown === total ? total + ' projects' : shown + ' / ' + total + ' shown';
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lens === lens)));
+
+      if (announce) {
+        if (!reduceMotion) {
+          survivors.forEach((el, i) => {
+            el.classList.remove('lens-rise');
+            void el.offsetWidth; // restart the entrance animation
+            el.style.animationDelay = (i * 55) + 'ms';
+            el.classList.add('lens-rise');
+            el.addEventListener('animationend', () => {
+              el.classList.remove('lens-rise');
+              el.style.animationDelay = '';
+            }, { once: true });
+          });
+        }
+        if (statusEl) statusEl.textContent = (labels[lens] || lens) + ' — ' + shown + ' project' + (shown === 1 ? '' : 's') + ' shown';
+      }
+    };
+
+    lensBar.hidden = false;
+    buttons.forEach(btn => btn.addEventListener('click', () => apply(btn.dataset.lens, true)));
+    apply('all', false);
+
+    // A link to a project that the current lens has filtered out can't scroll to a
+    // hidden target — reset to "All" first so the anchor still lands.
+    document.addEventListener('click', event => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+      const target = document.getElementById(link.getAttribute('href').slice(1));
+      if (target && items.includes(target) && target.hidden) apply('all', false);
+    });
+  }
+
+  /* ---------- Copy email address ---------- */
+  const copyButton = document.querySelector('[data-copy]');
+  const copyStatus = document.getElementById('copy-status');
+
+  if (copyButton && navigator.clipboard && window.isSecureContext) {
+    const label = copyButton.querySelector('.copy-label');
+    let resetTimer = null;
+
+    copyButton.hidden = false;
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copyButton.dataset.copy);
+        copyButton.classList.add('is-done');
+        if (label) label.textContent = 'Copied';
+        if (copyStatus) copyStatus.textContent = 'Email address copied to clipboard';
+      } catch {
+        if (copyStatus) copyStatus.textContent = 'Copy failed. Select the address to copy it manually.';
+      }
+      window.clearTimeout(resetTimer);
+      resetTimer = window.setTimeout(() => {
+        copyButton.classList.remove('is-done');
+        if (label) label.textContent = 'Copy';
+        if (copyStatus) copyStatus.textContent = '';
+      }, 2200);
+    });
+  }
+
+  /* ======================================================================
+     CREATIVE LAYER — ambient environment, custom cursor, kinetic hero,
+     scroll reveals, section continuity. All progressive enhancement.
+     ====================================================================== */
+  const root = document.documentElement;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  const hasIO = 'IntersectionObserver' in window;
+
+  // Shared normalized pointer position (-0.5 .. 0.5), read by the canvas.
+  let ptrNX = 0;
+  let ptrNY = 0;
+
+  // js-fx unlocks the animated layer (name sheen, reveals, section lighting).
+  if (!reduceMotion) root.classList.add('js-fx');
+
+  /* ---------- Entry sequence: drop the boot overlay once it fades ---------- */
+  const boot = document.getElementById('boot');
+  if (boot) {
+    const killBoot = () => { if (boot.parentNode) boot.remove(); };
+    let alreadyBooted = false;
+    try { alreadyBooted = sessionStorage.getItem('rt-booted') === '1'; } catch (e) { /* private mode */ }
+    if (alreadyBooted) {
+      // Seen the entry sequence this session — don't gate return visits.
+      killBoot();
     } else {
-        typed.textContent = word.slice(0, --ci);
-        if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+      try { sessionStorage.setItem('rt-booted', '1'); } catch (e) { /* ignore */ }
+      boot.addEventListener('animationend', event => {
+        if (event.animationName === 'boot-out') killBoot();
+      });
+      window.setTimeout(killBoot, 2500); // fallback if animationend never lands
     }
-    setTimeout(typeLoop, deleting ? 60 : 100);
-}
-typeLoop();
+  }
 
-// Blink cursor
-setInterval(() => {
-    const b = document.getElementById('cursor-blink');
-    if (b) b.style.opacity = b.style.opacity === '0' ? '1' : '0';
-}, 500);
+  /* ---------- Pointer → ambient lighting + parallax ---------- */
+  if (finePointer && !reduceMotion) {
+    let lastX = window.innerWidth * 0.72;
+    let lastY = window.innerHeight * 0.3;
+    let queued = false;
+    let pointerLit = false;
 
-// Scroll animations
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    const applyPointer = () => {
+      queued = false;
+      const rx = lastX / window.innerWidth;
+      const ry = lastY / window.innerHeight;
+      root.style.setProperty('--mx', (rx * 100).toFixed(2) + '%');
+      root.style.setProperty('--my', (ry * 100).toFixed(2) + '%');
+      if (!pointerLit) {
+        pointerLit = true;
+        root.style.setProperty('--pointer', '1');
+      }
+      ptrNX = rx - 0.5;
+      ptrNY = ry - 0.5;
+    };
+
+    window.addEventListener('pointermove', event => {
+      lastX = event.clientX;
+      lastY = event.clientY;
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(applyPointer);
+      }
+    }, { passive: true });
+  }
+
+  /* ---------- Ambient background: drifting stars + constellation links ----- */
+  const canvas = document.getElementById('fx-canvas');
+  if (canvas && canvas.getContext) {
+    const ctx = canvas.getContext('2d', { alpha: true });
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    const LINK = 118;
+    let w = 0;
+    let h = 0;
+    let points = [];
+    let raf = 0;
+    let running = false;
+    let ex = 0; // eased parallax
+    let ey = 0;
+
+    const rand = (a, b) => a + Math.random() * (b - a);
+
+    const build = () => {
+      const target = Math.min(Math.round((w * h) / 15000), 110);
+      points = [];
+      for (let i = 0; i < target; i++) {
+        const z = rand(0.3, 1);
+        points.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          z: z,
+          r: 0.4 + z * 1.1,
+          vx: rand(-0.06, 0.06),
+          vy: rand(-0.05, 0.02),
+          dx: 0,
+          dy: 0
+        });
+      }
+    };
+
+    const resize = () => {
+      w = canvas.clientWidth || window.innerWidth;
+      h = canvas.clientHeight || window.innerHeight;
+      canvas.width = Math.round(w * DPR);
+      canvas.height = Math.round(h * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      build();
+    };
+
+    const render = (animate) => {
+      ctx.clearRect(0, 0, w, h);
+      ex += (ptrNX - ex) * 0.05;
+      ey += (ptrNY - ey) * 0.05;
+
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        if (animate) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < -5) p.x = w + 5; else if (p.x > w + 5) p.x = -5;
+          if (p.y < -5) p.y = h + 5; else if (p.y > h + 5) p.y = -5;
+        }
+        p.dx = p.x + ex * 28 * p.z;
+        p.dy = p.y + ey * 28 * p.z;
+        ctx.beginPath();
+        ctx.arc(p.dx, p.dy, p.r, 0, 6.2832);
+        ctx.fillStyle = 'rgba(150, 200, 212,' + (0.1 + p.z * 0.32) + ')';
+        ctx.fill();
+      }
+
+      for (let i = 0; i < points.length; i++) {
+        const a = points[i];
+        for (let j = i + 1; j < points.length; j++) {
+          const b = points[j];
+          const dx = a.dx - b.dx;
+          const dy = a.dy - b.dy;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < LINK * LINK) {
+            const alpha = (1 - Math.sqrt(d2) / LINK) * 0.14;
+            ctx.strokeStyle = 'rgba(47, 220, 230,' + alpha + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.dx, a.dy);
+            ctx.lineTo(b.dx, b.dy);
+            ctx.stroke();
+          }
+        }
+      }
+
+      if (animate && running) raf = requestAnimationFrame(() => render(true));
+    };
+
+    const start = () => {
+      if (!running) {
+        running = true;
+        raf = requestAnimationFrame(() => render(true));
+      }
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        resize();
+        if (reduceMotion) render(false);
+      }, 180);
+    }, { passive: true });
+
+    resize();
+
+    if (reduceMotion) {
+      render(false); // one calm, static frame
+    } else {
+      start();
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop(); else start();
+      });
+    }
+  }
+
+  /* ---------- Custom cursor (fine pointer, motion allowed) ---------- */
+  if (finePointer && !reduceMotion) {
+    const dot = document.createElement('div');
+    const ring = document.createElement('div');
+    const pulse = document.createElement('div');
+    dot.className = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    pulse.className = 'cursor-pulse';
+    [dot, ring, pulse].forEach(el => {
+      el.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(el);
+    });
+    root.classList.add('has-cursor');
+
+    let mx = window.innerWidth / 2;
+    let my = window.innerHeight / 2;
+    let rx = mx;
+    let ry = my;
+
+    window.addEventListener('pointermove', event => {
+      mx = event.clientX;
+      my = event.clientY;
+      dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
+    }, { passive: true });
+
+    const follow = () => {
+      rx += (mx - rx) * 0.2;
+      ry += (my - ry) * 0.2;
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+      requestAnimationFrame(follow);
+    };
+    requestAnimationFrame(follow);
+
+    const linkSel = 'a, button, summary, .lens, [role="button"], input, label';
+    document.addEventListener('pointerover', event => {
+      const el = event.target;
+      if (!el || !el.closest) return;
+      const inLink = el.closest(linkSel);
+      const inCase = el.closest('.case');
+      ring.classList.toggle('is-link', !!inLink);
+      ring.classList.toggle('is-target', !!inCase && !inLink);
+    });
+
+    window.addEventListener('pointerdown', event => {
+      ring.classList.add('is-down');
+      pulse.style.setProperty('--cx', event.clientX + 'px');
+      pulse.style.setProperty('--cy', event.clientY + 'px');
+      pulse.classList.remove('is-firing');
+      void pulse.offsetWidth;
+      pulse.classList.add('is-firing');
+    }, { passive: true });
+    window.addEventListener('pointerup', () => ring.classList.remove('is-down'), { passive: true });
+
+    // Hide the custom cursor when the pointer leaves the window.
+    document.addEventListener('mouseleave', () => {
+      dot.style.opacity = '0';
+      ring.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      dot.style.opacity = '';
+      ring.style.opacity = '';
+    });
+
+    // Magnetic pull on primary controls.
+    document.querySelectorAll('.btn, .nav-resume, .contact-email').forEach(el => {
+      el.classList.add('magnetic');
+      el.addEventListener('pointermove', event => {
+        const r = el.getBoundingClientRect();
+        const dx = event.clientX - (r.left + r.width / 2);
+        const dy = event.clientY - (r.top + r.height / 2);
+        el.style.transform = 'translate(' + (dx * 0.16).toFixed(1) + 'px,' + (dy * 0.22).toFixed(1) + 'px)';
+      }, { passive: true });
+      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+    });
+  }
+
+  /* ---------- Case studies: directional light follows the cursor ---------- */
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.case').forEach(caseEl => {
+      caseEl.addEventListener('pointermove', event => {
+        const r = caseEl.getBoundingClientRect();
+        caseEl.style.setProperty('--px', ((event.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+        caseEl.style.setProperty('--py', ((event.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+      }, { passive: true });
+    });
+  }
+
+  /* ---------- Hero: rotating identity signal (scramble + swap) ---------- */
+  const rotator = document.querySelector('[data-rotator]');
+  if (rotator && !reduceMotion) {
+    const word = rotator.querySelector('.rot-word');
+    const phrases = [
+      'Building intelligent systems',
+      'AI / ML engineer',
+      'Edge AI engineer',
+      'Computer vision researcher',
+      'Autonomous systems R&D',
+      'Backend systems builder',
+      'Machine learning engineer'
+    ];
+    const glyphs = '01<>/\\=+*#_—·';
+    let idx = 0;
+    let decoding = false;
+
+    const decodeTo = text => {
+      decoding = true;
+      const dur = 520;
+      const t0 = performance.now();
+      const len = text.length;
+      const tick = now => {
+        const t = Math.min((now - t0) / dur, 1);
+        const revealed = Math.floor(t * len);
+        let out = '';
+        for (let i = 0; i < len; i++) {
+          if (i < revealed || text[i] === ' ') out += text[i];
+          else out += glyphs[(Math.random() * glyphs.length) | 0];
+        }
+        word.textContent = out;
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          word.textContent = text;
+          decoding = false;
+        }
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const advance = () => {
+      if (document.hidden || decoding) return;
+      idx = (idx + 1) % phrases.length;
+      word.classList.remove('is-swap');
+      void word.offsetWidth;
+      word.classList.add('is-swap');
+      decodeTo(phrases[idx]);
+    };
+
+    window.setInterval(advance, 3200);
+  }
+
+  /* ---------- Scroll reveals + section continuity (motion allowed) ---------- */
+  if (root.classList.contains('js-fx') && hasIO) {
+    // Light per-group stagger so grids cascade instead of popping together.
+    document.querySelectorAll('.intersections, .also-list, .research-grid').forEach(group => {
+      Array.from(group.children).forEach((child, i) => {
+        child.style.setProperty('--rd', (i * 55) + 'ms');
+      });
+    });
+
+    const revealSel = [
+      '.section-head', '.case', '.role', '.also', '.paper', '.proof-row',
+      '.intersections > li', '.skill-row', '.learning', '.contact-list', '.research-grid'
+    ].join(',');
+
+    const revealIO = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+
+    document.querySelectorAll(revealSel).forEach(el => {
+      if (el.closest('.hero')) return; // hero already animates on load
+      // Only arm elements below the fold, so nothing on-screen ever flickers.
+      if (el.getBoundingClientRect().top > window.innerHeight) {
+        el.setAttribute('data-reveal', '');
+        revealIO.observe(el);
+      }
+    });
+
+    // Accent segment lights along each section's top edge as it enters view.
+    const sectionIO = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('is-lit');
+      });
+    }, { threshold: 0.04 });
+    document.querySelectorAll('.section').forEach(section => sectionIO.observe(section));
+  }
+})();
